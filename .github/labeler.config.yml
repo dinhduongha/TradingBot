@@ -1,0 +1,24 @@
+docker:
+  - "*/**/Dockerfile"
+
+github:
+  - ".github/**/*"
+
+api:
+  - "*/**/*.cs"
+
+backend:
+  - "*/**/*.cs"
+  
+design:
+  - "*/**/*.css"
+  - "*/**/*.sass"
+  - "*/**/*.scss"
+
+frontend:
+  - "*/**/*.js"
+  - "*/**/*.ts"
+  - "*/**/*.vue"
+  - "*/**/*.css"
+  - "*/**/*.sass"
+  - "*/**/*.scss"
