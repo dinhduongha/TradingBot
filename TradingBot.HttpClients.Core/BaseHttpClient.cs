@@ -23,7 +23,7 @@ namespace TradingBot.HttpClients.Core
             BaseAddress = new Uri(uri);
         }
 
-        public async Task<ResponseModel<TResult>> GetAsync<TResult>(string uri,
+        protected virtual async Task<ResponseModel<TResult>> GetAsync<TResult>(string uri,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
@@ -31,7 +31,7 @@ namespace TradingBot.HttpClients.Core
             return await HttpRequestHandler.HandleAsync<TResult>(() => GetAsync(uri, cancellationToken));
         }
 
-        public async Task<ResponseModel<TResult>> PostAsync<TResult>(string uri, object content,
+        protected virtual async Task<ResponseModel<TResult>> PostAsync<TResult>(string uri, object content,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
@@ -40,7 +40,7 @@ namespace TradingBot.HttpClients.Core
                 cancellationToken));
         }
 
-        public async Task<ResponseModel<TResult>> PutAsync<TResult>(string uri, object content,
+        protected virtual async Task<ResponseModel<TResult>> PutAsync<TResult>(string uri, object content,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
@@ -49,7 +49,7 @@ namespace TradingBot.HttpClients.Core
                 cancellationToken));
         }
 
-        public async Task<ResponseModel<TResult>> DeleteAsync<TResult>(string uri,
+        protected virtual async Task<ResponseModel<TResult>> DeleteAsync<TResult>(string uri,
             CancellationToken cancellationToken = default)
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
