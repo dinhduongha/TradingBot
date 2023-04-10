@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TradingBot.Core\TradingBot.Core.csproj" />
+    <ProjectReference Include="..\TradingBot.HttpClients\TradingBot.HttpClients.csproj" />
+  </ItemGroup>
+
+</Project>
