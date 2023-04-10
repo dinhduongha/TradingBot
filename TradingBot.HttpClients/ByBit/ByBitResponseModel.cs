@@ -5,12 +5,12 @@ namespace TradingBot.HttpClients.ByBit
     internal class ByBitResponseModel<TResult>
     {
         [JsonProperty("retMsg")]
-        public string Message { get; }
+        public string Message { get; set; }
 
         [JsonProperty("result")]
-        public TResult? Result { get; }
+        public TResult? Result { get; set; }
 
         [JsonProperty("retExtInfo")]
-        public object? ExtendInfo { get; }
+        public object? ExtendInfo { get; set; }
     }
 }

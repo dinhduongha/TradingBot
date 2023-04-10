@@ -6,6 +6,9 @@ namespace TradingBot.HttpClients.ByBit
     {
         public static void AddByBitHttpClients(this IServiceCollection services)
         {
+            services.AddSingleton<AccountHttpClient>();
+            services.AddSingleton<MarketHttpClient>();
+
             services.AddSingleton<ByBitHttpContext>();
         }
     }
