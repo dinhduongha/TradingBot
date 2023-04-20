@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TradingBot.Core.Configuration;
 using TradingBot.Core.Configuration.Api;
+using TradingBot.Core.Configuration;
+using TradingBot.HttpClients;
 
-namespace TradingBot.HttpClients.Tests
+namespace TradingBot.TechnicalAnalyze.Core.Tests
 {
     internal class Startup
     {
