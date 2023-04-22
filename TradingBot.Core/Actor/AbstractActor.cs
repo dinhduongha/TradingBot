@@ -28,7 +28,7 @@ namespace TradingBot.Core.Actor
 
                     await Task.WhenAny(workers);
 
-                    workers.RemoveAll(s => s.IsCompleted);
+                    workers.RemoveAll(task => task.IsCompleted);
                 }
             });
         }
