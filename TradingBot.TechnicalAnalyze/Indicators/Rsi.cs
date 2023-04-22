@@ -1,14 +1,14 @@
 ﻿using Skender.Stock.Indicators;
 
-namespace TradingBot.TechnicalAnalyze.Core.Indicators
+namespace TradingBot.TechnicalAnalyze.Indicators
 {
-    public class Ema : Indicator
+    public class Rsi : Indicator
     {
         public int Length { get; }
 
-        public override string Name => $"EMA {Length}";
+        public override string Name => $"RSI {Length}";
 
-        public Ema(IEnumerable<IQuote> quotes, int length)
+        public Rsi(IEnumerable<IQuote> quotes, int length)
         {
             if (length < 1) throw new ArgumentOutOfRangeException(nameof(length));
 
@@ -19,7 +19,7 @@ namespace TradingBot.TechnicalAnalyze.Core.Indicators
 
         public override IDictionary<DateTime, double?> Calculate(IEnumerable<IQuote> quotes)
         {
-            return quotes.GetEma(Length).ToDictionary(data => data.Date, data => data.Ema);
+            return quotes.GetRsi(Length).ToDictionary(data => data.Date, data => data.Rsi);
         }
     }
 }

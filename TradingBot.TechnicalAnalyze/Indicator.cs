@@ -1,6 +1,6 @@
 ﻿using Skender.Stock.Indicators;
 
-namespace TradingBot.TechnicalAnalyze.Core
+namespace TradingBot.TechnicalAnalyze
 {
     public abstract class Indicator : IIndicator
     {
