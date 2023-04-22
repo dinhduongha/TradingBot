@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Bybit.Net.Clients;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TradingBot.HttpClients.ByBit
 {
@@ -6,10 +7,7 @@ namespace TradingBot.HttpClients.ByBit
     {
         public static void AddByBitHttpClients(this IServiceCollection services)
         {
-            services.AddSingleton<AccountHttpClient>();
-            services.AddSingleton<MarketHttpClient>();
-
-            services.AddSingleton<ByBitHttpContext>();
+            services.AddTransient(factory => new BybitClient()); 
         }
     }
 }

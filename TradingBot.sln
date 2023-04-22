@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Core", "TradingBot.Core\TradingBot.Core.csproj", "{BB6E0A5F-AFC7-4032-B139-07617BCAD6D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.Core", "TradingBot.Core\TradingBot.Core.csproj", "{BB6E0A5F-AFC7-4032-B139-07617BCAD6D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Infrastructure", "TradingBot.Infrastructure\TradingBot.Infrastructure.csproj", "{F64944CD-9B54-4DEB-AE16-7C7CE38314C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.Infrastructure", "TradingBot.Infrastructure\TradingBot.Infrastructure.csproj", "{F64944CD-9B54-4DEB-AE16-7C7CE38314C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.HttpClients.Core", "TradingBot.HttpClients.Core\TradingBot.HttpClients.Core.csproj", "{20E6D75F-4F6B-4C0F-9AEC-5F324FA3F6B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.HttpClients.Core", "TradingBot.HttpClients.Core\TradingBot.HttpClients.Core.csproj", "{20E6D75F-4F6B-4C0F-9AEC-5F324FA3F6B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.HttpClients", "TradingBot.HttpClients\TradingBot.HttpClients.csproj", "{80A3FA06-68D5-4464-9C37-6BF43E03C6FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.HttpClients", "TradingBot.HttpClients\TradingBot.HttpClients.csproj", "{80A3FA06-68D5-4464-9C37-6BF43E03C6FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.HttpClients.Tests", "TradingBot.HttpClients.Tests\TradingBot.HttpClients.Tests.csproj", "{DAF78C35-989A-41CD-ADF3-0CC501C4ED11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.HttpClients.Tests", "TradingBot.HttpClients.Tests\TradingBot.HttpClients.Tests.csproj", "{DAF78C35-989A-41CD-ADF3-0CC501C4ED11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.TechnicalAnalyze.Core", "TradingBot.TechnicalAnalyze.Core\TradingBot.TechnicalAnalyze.Core.csproj", "{E898A32F-9AE4-467F-84EE-4AEB49D93E3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.TechnicalAnalyze.Core.Tests", "TradingBot.TechnicalAnalyze.Core.Tests\TradingBot.TechnicalAnalyze.Core.Tests.csproj", "{AC0033F3-4128-41E1-A7D1-4E22405F3DE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Infrastructure.Tests", "TradingBot.Infrastructure.Tests\TradingBot.Infrastructure.Tests.csproj", "{1025AE31-0EFC-43C4-91F8-257DB622FE67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{DAF78C35-989A-41CD-ADF3-0CC501C4ED11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF78C35-989A-41CD-ADF3-0CC501C4ED11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF78C35-989A-41CD-ADF3-0CC501C4ED11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E898A32F-9AE4-467F-84EE-4AEB49D93E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E898A32F-9AE4-467F-84EE-4AEB49D93E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E898A32F-9AE4-467F-84EE-4AEB49D93E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E898A32F-9AE4-467F-84EE-4AEB49D93E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0033F3-4128-41E1-A7D1-4E22405F3DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0033F3-4128-41E1-A7D1-4E22405F3DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0033F3-4128-41E1-A7D1-4E22405F3DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0033F3-4128-41E1-A7D1-4E22405F3DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1025AE31-0EFC-43C4-91F8-257DB622FE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1025AE31-0EFC-43C4-91F8-257DB622FE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1025AE31-0EFC-43C4-91F8-257DB622FE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1025AE31-0EFC-43C4-91F8-257DB622FE67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ using CryptoExchange.Net.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace TradingBot.HttpClients.Tests
+namespace TradingBot.Infrastructure.Tests
 {
     internal class Startup
     {
@@ -16,7 +16,7 @@ namespace TradingBot.HttpClients.Tests
                 LogLevel = LogLevel.Trace,
             });
 
-            services.AddHttpClients();
+            services.AddInfrastructure();
         }
     }
 }
