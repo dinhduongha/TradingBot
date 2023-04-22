@@ -2,7 +2,7 @@
 using Bybit.Net.Enums;
 using TradingBot.Core.Domain;
 
-namespace TradingBot.TechnicalAnalyze.Core.Tests
+namespace TradingBot.TechnicalAnalyze.Tests
 {
     public class ChartTests
     {

@@ -1,7 +1,7 @@
 ﻿using Skender.Stock.Indicators;
-using TradingBot.TechnicalAnalyze.Core.Indicators;
+using TradingBot.TechnicalAnalyze.Indicators;
 
-namespace TradingBot.TechnicalAnalyze.Core
+namespace TradingBot.TechnicalAnalyze
 {
     public class Chart : IChart
     {

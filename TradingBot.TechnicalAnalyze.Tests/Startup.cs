@@ -7,7 +7,7 @@ using Bybit.Net.Objects;
 using CryptoExchange.Net.Authentication;
 using Microsoft.Extensions.Logging;
 
-namespace TradingBot.TechnicalAnalyze.Core.Tests
+namespace TradingBot.TechnicalAnalyze.Tests
 {
     internal class Startup
     {
