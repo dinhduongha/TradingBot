@@ -2,6 +2,10 @@
 using TradingBot.Core.Configuration.Api;
 using TradingBot.Core.Configuration;
 using TradingBot.HttpClients;
+using Bybit.Net.Clients;
+using Bybit.Net.Objects;
+using CryptoExchange.Net.Authentication;
+using Microsoft.Extensions.Logging;
 
 namespace TradingBot.TechnicalAnalyze.Core.Tests
 {
@@ -9,8 +13,11 @@ namespace TradingBot.TechnicalAnalyze.Core.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IApiKey, ByBitApiKey>(provider => new ByBitApiKey("5WtwNTNXdIAJvwOa8x",
-                "nKHRZBUqkPEFpVh296Ldr1TSgsv2kU3RGxdU"));
+            BybitClient.SetDefaultOptions(new BybitClientOptions
+            {
+                ApiCredentials = new ApiCredentials("5WtwNTNXdIAJvwOa8x", "nKHRZBUqkPEFpVh296Ldr1TSgsv2kU3RGxdU"),
+                LogLevel = LogLevel.Trace,
+            });
 
             services.AddHttpClients();
         }

@@ -1,12 +1,12 @@
-﻿using TradingBot.HttpClients.ByBit;
+﻿using Bybit.Net.Clients;
 
 namespace TradingBot.HttpClients
 {
     public class HttpContext
     {
-        public ByBitHttpContext ByBit { get; }
+        public BybitClient ByBit { get; }
 
-        public HttpContext(ByBitHttpContext byBit)
+        public HttpContext(BybitClient byBit)
         {
             ByBit = byBit;
         }

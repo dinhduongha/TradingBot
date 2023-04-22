@@ -1,10 +1,10 @@
 ﻿namespace TradingBot.Core.Configuration
 {
-    public class TradingBotConfiguration : ITradingBotConfiguration
+    public class Configuration : IConfiguration
     {
         public IApiKey ApiKey { get; }
 
-        public TradingBotConfiguration(IApiKey apiKey)
+        public Configuration(IApiKey apiKey)
         {
             if (apiKey == null) throw new ArgumentNullException(nameof(apiKey));
 

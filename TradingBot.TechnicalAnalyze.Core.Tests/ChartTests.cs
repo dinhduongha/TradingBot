@@ -1,14 +1,14 @@
-﻿using TradingBot.Core.Domain;
-using TradingBot.HttpClients.ByBit;
-using TradingBot.HttpClients.ByBit.RequestModels;
+﻿using Bybit.Net.Clients;
+using Bybit.Net.Enums;
+using TradingBot.Core.Domain;
 
 namespace TradingBot.TechnicalAnalyze.Core.Tests
 {
     public class ChartTests
     {
-        private readonly MarketHttpClient _httpClient;
+        private readonly BybitClient _httpClient;
 
-        public ChartTests(MarketHttpClient httpClient)
+        public ChartTests(BybitClient httpClient)
         {
             _httpClient = httpClient;
         }
@@ -16,12 +16,11 @@ namespace TradingBot.TechnicalAnalyze.Core.Tests
         [Fact]
         public async Task ChartConstructor_WithCandles_ReturnObject()
         {
-            var model = new GetKlineRequestModel(Category.Spot, "ETHUSDT", Interval.Day,
-                DateTime.UtcNow.AddMonths(-6), DateTime.UtcNow);
+            var response = await _httpClient.V5Api.ExchangeData.GetKlinesAsync(Category.Spot, "ETHUSDT",
+                KlineInterval.OneMinute, DateTime.UtcNow.AddDays(-3), DateTime.UtcNow, 1000);
 
-            var response = await _httpClient.GetKlineAsync(model);
-
-            var candles = response.Result?.Values.Select(value => new CustomQuote(value)) ?? new List<CustomQuote>();
+            var candles = response.Data.List.Select(value => new CustomQuote(value.LowPrice, value.OpenPrice, 
+                value.HighPrice, value.ClosePrice, value.Volume, value.StartTime)) ?? new List<CustomQuote>();
 
             var chart = new Chart(candles);
 

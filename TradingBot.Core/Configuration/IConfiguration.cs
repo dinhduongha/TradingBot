@@ -1,6 +1,6 @@
 ﻿namespace TradingBot.Core.Configuration
 {
-    public interface ITradingBotConfiguration
+    public interface IConfiguration
     {
         IApiKey ApiKey { get; }
     }
