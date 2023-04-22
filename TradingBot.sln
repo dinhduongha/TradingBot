@@ -13,13 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.HttpClients", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.HttpClients.Tests", "TradingBot.HttpClients.Tests\TradingBot.HttpClients.Tests.csproj", "{DAF78C35-989A-41CD-ADF3-0CC501C4ED11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Infrastructure.Tests", "TradingBot.Infrastructure.Tests\TradingBot.Infrastructure.Tests.csproj", "{1025AE31-0EFC-43C4-91F8-257DB622FE67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.Infrastructure.Tests", "TradingBot.Infrastructure.Tests\TradingBot.Infrastructure.Tests.csproj", "{1025AE31-0EFC-43C4-91F8-257DB622FE67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Simulator", "TradingBot.Simulator\TradingBot.Simulator.csproj", "{AD05E001-AD38-4F25-A88E-ABE2059C5469}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.Simulator", "TradingBot.Simulator\TradingBot.Simulator.csproj", "{AD05E001-AD38-4F25-A88E-ABE2059C5469}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.TechnicalAnalyze", "TradingBot.TechnicalAnalyze\TradingBot.TechnicalAnalyze.csproj", "{8649FF8F-DE0A-4714-BDB4-7D7F0790857C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.TechnicalAnalyze", "TradingBot.TechnicalAnalyze\TradingBot.TechnicalAnalyze.csproj", "{8649FF8F-DE0A-4714-BDB4-7D7F0790857C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.TechnicalAnalyze.Tests", "TradingBot.TechnicalAnalyze.Tests\TradingBot.TechnicalAnalyze.Tests.csproj", "{0CDD1EE1-31C5-4096-B072-20A04F6A631B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.TechnicalAnalyze.Tests", "TradingBot.TechnicalAnalyze.Tests\TradingBot.TechnicalAnalyze.Tests.csproj", "{0CDD1EE1-31C5-4096-B072-20A04F6A631B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Simulator.Tests", "TradingBot.Simulator.Tests\TradingBot.Simulator.Tests.csproj", "{1A14B692-E318-4E39-B441-41DA487904C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{0CDD1EE1-31C5-4096-B072-20A04F6A631B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CDD1EE1-31C5-4096-B072-20A04F6A631B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CDD1EE1-31C5-4096-B072-20A04F6A631B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A14B692-E318-4E39-B441-41DA487904C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A14B692-E318-4E39-B441-41DA487904C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A14B692-E318-4E39-B441-41DA487904C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A14B692-E318-4E39-B441-41DA487904C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
