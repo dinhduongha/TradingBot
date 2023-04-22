@@ -15,7 +15,7 @@ namespace TradingBot.TechnicalAnalyze.Core.Tests
         {
             BybitClient.SetDefaultOptions(new BybitClientOptions
             {
-                ApiCredentials = new ApiCredentials("5WtwNTNXdIAJvwOa8x", "nKHRZBUqkPEFpVh296Ldr1TSgsv2kU3RGxdU"),
+                ApiCredentials = new ApiCredentials("API-KEY", "API-SECRET"),
                 LogLevel = LogLevel.Trace,
             });
 
