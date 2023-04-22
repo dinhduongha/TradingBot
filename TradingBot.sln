@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.TechnicalAnalyze
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Simulator.Tests", "TradingBot.Simulator.Tests\TradingBot.Simulator.Tests.csproj", "{1A14B692-E318-4E39-B441-41DA487904C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Downloader", "TradingBot.Downloader\TradingBot.Downloader.csproj", "{17AF366A-0F6F-4CCA-8CFE-A0D39CBB8934}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Downloader.Tests", "TradingBot.Downloader.Tests\TradingBot.Downloader.Tests.csproj", "{6E7CB1F4-C4B4-47D2-A999-3A2942AF218E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{1A14B692-E318-4E39-B441-41DA487904C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A14B692-E318-4E39-B441-41DA487904C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A14B692-E318-4E39-B441-41DA487904C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17AF366A-0F6F-4CCA-8CFE-A0D39CBB8934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AF366A-0F6F-4CCA-8CFE-A0D39CBB8934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AF366A-0F6F-4CCA-8CFE-A0D39CBB8934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AF366A-0F6F-4CCA-8CFE-A0D39CBB8934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E7CB1F4-C4B4-47D2-A999-3A2942AF218E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E7CB1F4-C4B4-47D2-A999-3A2942AF218E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E7CB1F4-C4B4-47D2-A999-3A2942AF218E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E7CB1F4-C4B4-47D2-A999-3A2942AF218E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
