@@ -1,6 +1,6 @@
 ﻿using Skender.Stock.Indicators;
 
-namespace TradingBot.TechnicalAnalyze
+namespace TradingBot.Core.Domain.Chart
 {
     public interface IChart
     {
@@ -13,6 +13,8 @@ namespace TradingBot.TechnicalAnalyze
         ChartDataItem this[int index] { get; }
 
         ChartDataItem this[DateTime startedAt] { get; }
+
+        IEnumerable<ChartDataItem> ChartDataItems { get; }
 
         void Add(IQuote quote);
     }

@@ -1,6 +1,6 @@
 ﻿using Skender.Stock.Indicators;
 
-namespace TradingBot.TechnicalAnalyze
+namespace TradingBot.Core.Domain.Chart
 {
     public abstract class Indicator : IIndicator
     {
@@ -10,7 +10,7 @@ namespace TradingBot.TechnicalAnalyze
 
         public IDictionary<DateTime, double?> Data { get; set; }
 
-        public double? this[int index] => index < 0 || index >= Data.Count 
+        public double? this[int index] => index < 0 || index >= Data.Count
             ? throw new ArgumentOutOfRangeException(nameof(index)) : Data.ElementAt(index).Value;
 
         public double? this[DateTime date] => Data.ContainsKey(date)

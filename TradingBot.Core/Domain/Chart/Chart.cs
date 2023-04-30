@@ -1,7 +1,7 @@
 ﻿using Skender.Stock.Indicators;
-using TradingBot.TechnicalAnalyze.Indicators;
+using TradingBot.Core.Domain.Chart.Indicators;
 
-namespace TradingBot.TechnicalAnalyze
+namespace TradingBot.Core.Domain.Chart
 {
     public class Chart : IChart
     {
@@ -20,6 +20,9 @@ namespace TradingBot.TechnicalAnalyze
             new ChartDataItem(date, Quotes[date], Indicators.ToDictionary(indicator => 
                 indicator.Name, indicator => indicator[date])) : throw new IndexOutOfRangeException(nameof(date));
 
+        public IEnumerable<ChartDataItem> ChartDataItems => Quotes.Select(quote => new ChartDataItem(quote.Key, 
+            quote.Value, Indicators.ToDictionary(indicator => indicator.Name, indicator => indicator[quote.Key])));
+
         public Chart(IEnumerable<IQuote> quotes)
         {
             if (quotes == null) throw new ArgumentNullException(nameof(quotes));
@@ -28,11 +31,18 @@ namespace TradingBot.TechnicalAnalyze
 
             Indicators = new List<IIndicator>()
             {
+                new Bop(quotes),
                 new Rsi(quotes, 14),
+                new Atr(quotes, 14),
+                new Ema(quotes, 5),
+                new Ema(quotes, 10),
                 new Ema(quotes, 20),
                 new Ema(quotes, 50),
                 new Ema(quotes, 100),
                 new Ema(quotes, 200),
+                new ElderRay(quotes, 13),
+                new AverageLiquidity(quotes, 5),
+                new AverageVolatility(quotes, 5),
             };
         }
 
