@@ -1,21 +1,22 @@
 ﻿using Bybit.Net.Clients;
 using Bybit.Net.Enums;
+using Okex.Net;
 
-namespace TradingBot.HttpClients.Tests.ByBit
+namespace TradingBot.HttpClients.Tests.ByBit.V5Api
 {
     public class ExchangeDataApiTests
     {
-        public readonly BybitClient _httpClient;
+        public readonly BybitClient _client;
 
-        public ExchangeDataApiTests(BybitClient httpClient)
+        public ExchangeDataApiTests(BybitClient client)
         {
-            _httpClient = httpClient;
+            _client = client;
         }
 
         [Fact]
         public async Task GetKlinesAsync_WithParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.ExchangeData.GetKlinesAsync(Category.Spot, "ETHUSDT", 
+            var response = await _client.V5Api.ExchangeData.GetKlinesAsync(Category.Spot, "ETHUSDT",
                 KlineInterval.OneMinute, DateTime.UtcNow.AddDays(-3), DateTime.UtcNow, 1000);
 
             Assert.NotNull(response);
@@ -29,7 +30,7 @@ namespace TradingBot.HttpClients.Tests.ByBit
         [Fact]
         public async Task GetOrderbookAsync_WithParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.ExchangeData.GetOrderbookAsync(Category.Spot, "ETHUSDT");
+            var response = await _client.V5Api.ExchangeData.GetOrderbookAsync(Category.Spot, "ETHUSDT");
 
             Assert.NotNull(response);
 
@@ -45,7 +46,7 @@ namespace TradingBot.HttpClients.Tests.ByBit
         [Fact]
         public async Task GetSpotSymbolsAsync_WithParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.ExchangeData.GetSpotSymbolsAsync();
+            var response = await _client.V5Api.ExchangeData.GetSpotSymbolsAsync();
 
             Assert.NotNull(response);
 
@@ -58,7 +59,7 @@ namespace TradingBot.HttpClients.Tests.ByBit
         [Fact]
         public async Task GetSpotTickersAsync_WithParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.ExchangeData.GetSpotTickersAsync();
+            var response = await _client.V5Api.ExchangeData.GetSpotTickersAsync();
 
             Assert.NotNull(response);
 

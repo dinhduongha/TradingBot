@@ -10,8 +10,6 @@ namespace TradingBot.TechnicalAnalyze.Strategies
         {
             if (chartDataItems == null || chartDataItems.Count() == 0) return null;
 
-
-
             return null;
         }
     }

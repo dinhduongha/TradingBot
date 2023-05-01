@@ -1,21 +1,21 @@
 ﻿using Bybit.Net.Clients;
 using Bybit.Net.Enums;
 
-namespace TradingBot.HttpClients.Tests.ByBit
+namespace TradingBot.HttpClients.Tests.ByBit.V5Api
 {
     public class AccountTests
     {
-        private readonly BybitClient _httpClient;
+        private readonly BybitClient _client;
 
-        public AccountTests(BybitClient httpClient)
+        public AccountTests(BybitClient client)
         {
-            _httpClient = httpClient;
+            _client = client;
         }
 
         [Fact]
         public async Task GetBalancesAsync_WithParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.Account.GetBalancesAsync(AccountType.Spot);
+            var response = await _client.V5Api.Account.GetBalancesAsync(AccountType.Spot);
 
             Assert.NotNull(response);
 
@@ -28,7 +28,7 @@ namespace TradingBot.HttpClients.Tests.ByBit
         [Fact]
         public async Task GetBorrowHistoryAsync_WithoutParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.Account.GetBorrowHistoryAsync();
+            var response = await _client.V5Api.Account.GetBorrowHistoryAsync();
 
             Assert.NotNull(response);
 
@@ -40,7 +40,7 @@ namespace TradingBot.HttpClients.Tests.ByBit
         [Fact]
         public async Task GetFeeRateAsync_WithParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.Account.GetFeeRateAsync(Category.Spot);
+            var response = await _client.V5Api.Account.GetFeeRateAsync(Category.Spot);
 
             Assert.NotNull(response);
 
@@ -53,7 +53,7 @@ namespace TradingBot.HttpClients.Tests.ByBit
         [Fact]
         public async Task GetAssetInfoAsync_WithParams_ReturnNotNullResult()
         {
-            var response = await _httpClient.V5Api.Account.GetAssetInfoAsync(AccountType.Spot);
+            var response = await _client.V5Api.Account.GetAssetInfoAsync(AccountType.Spot);
 
             Assert.NotNull(response);
 
