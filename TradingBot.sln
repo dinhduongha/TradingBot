@@ -27,9 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.Downloader", "Tr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.Downloader.Tests", "TradingBot.Downloader.Tests\TradingBot.Downloader.Tests.csproj", "{6E7CB1F4-C4B4-47D2-A999-3A2942AF218E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.TradeAdapters", "TradingBot.TradeAdapters\TradingBot.TradeAdapters.csproj", "{DE3C2E1A-407A-4451-876D-4BF28745F718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.TradeAdapters", "TradingBot.TradeAdapters\TradingBot.TradeAdapters.csproj", "{DE3C2E1A-407A-4451-876D-4BF28745F718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.TradeAdapters.Tests", "TradingBot.TradeAdapters.Tests\TradingBot.TradeAdapters.Tests.csproj", "{581CDA09-CC20-4E8B-A5FE-98C54CD367A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.TradeAdapters.Tests", "TradingBot.TradeAdapters.Tests\TradingBot.TradeAdapters.Tests.csproj", "{581CDA09-CC20-4E8B-A5FE-98C54CD367A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Quik", "TradingBot.Quik\TradingBot.Quik.csproj", "{77A40D1A-1384-4295-9B38-135BECD73896}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Quik.Tests", "TradingBot.Quik.Tests\TradingBot.Quik.Tests.csproj", "{37CD3C96-71B0-4ED8-B23F-C12473E38DD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{581CDA09-CC20-4E8B-A5FE-98C54CD367A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{581CDA09-CC20-4E8B-A5FE-98C54CD367A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{581CDA09-CC20-4E8B-A5FE-98C54CD367A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A40D1A-1384-4295-9B38-135BECD73896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A40D1A-1384-4295-9B38-135BECD73896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A40D1A-1384-4295-9B38-135BECD73896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A40D1A-1384-4295-9B38-135BECD73896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37CD3C96-71B0-4ED8-B23F-C12473E38DD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37CD3C96-71B0-4ED8-B23F-C12473E38DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37CD3C96-71B0-4ED8-B23F-C12473E38DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37CD3C96-71B0-4ED8-B23F-C12473E38DD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
