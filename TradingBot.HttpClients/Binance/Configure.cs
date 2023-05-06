@@ -11,7 +11,7 @@ namespace TradingBot.HttpClients.Binance
         {
             BinanceClientOptions.Default.LogLevel = LogLevel.Trace;
 
-            services.AddTransient(factory => new BinanceClient());
+            services.AddSingleton(factory => new BinanceClient());
         }
     }
 }

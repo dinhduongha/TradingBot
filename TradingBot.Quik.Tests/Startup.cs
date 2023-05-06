@@ -6,7 +6,7 @@ namespace TradingBot.Quik.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddQuik();
         }
     }
 }

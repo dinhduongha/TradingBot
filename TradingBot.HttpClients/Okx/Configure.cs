@@ -12,7 +12,7 @@ namespace TradingBot.HttpClients.Okx
             OkexClientOptions.Default.UnifiedApiOptions.BaseAddress = "https://www.okx.cab";
             OkexClientOptions.Default.LogLevel = LogLevel.Trace;
 
-            services.AddTransient(factory => new OkexClient());
+            services.AddSingleton(factory => new OkexClient());
         }
     }
 }

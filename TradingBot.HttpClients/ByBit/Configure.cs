@@ -11,7 +11,7 @@ namespace TradingBot.HttpClients.ByBit
         {
             BybitClientOptions.Default.LogLevel = LogLevel.Trace;
 
-            services.AddTransient(factory => new BybitClient()); 
+            services.AddSingleton(factory => new BybitClient()); 
         }
     }
 }
