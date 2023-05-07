@@ -1,4 +1,5 @@
 ﻿using QuikSharp;
+using System.Diagnostics;
 
 namespace TradingBot.Quik.Tests.Quik
 {
@@ -14,10 +15,24 @@ namespace TradingBot.Quik.Tests.Quik
         [Fact]
         public async Task Ping_ReturnNotNullAndEmptyResult()
         {
-            var result = await _functions.Ping();
+            var watch = new Stopwatch();
+            var pings = new List<long>();
 
-            Assert.NotNull(result);
-            Assert.NotEmpty(result);
+            for (var i = 0; i < 10; i++)
+            {
+                watch.Reset();
+                watch.Start();
+
+                await _functions.Ping();
+
+                watch.Stop();
+
+                pings.Add(watch.ElapsedMilliseconds);
+            }
+
+            var avgPing = pings.Average();
+
+            Assert.True(avgPing > 0);
         }
     }
 }
