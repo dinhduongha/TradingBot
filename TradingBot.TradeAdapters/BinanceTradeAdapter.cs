@@ -31,9 +31,17 @@ namespace TradingBot.TradeAdapters
             return response?.Data?.Symbols?.Select(symbol => symbol.ToStockTicker()) ?? Enumerable.Empty<StockTicker>();
         }
 
-        public Task<IEnumerable<IQuote>> GetQuotes(string code, Interval interval, DateTime from, DateTime to)
+        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, 
+            DateTime from, DateTime to)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
+            if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
+            if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
+
+            var response = await _client.SpotApi.ExchangeData.GetKlinesAsync(code, interval.MapInterval(), from, to);
+            var klines = response?.Data;
+
+            return response?.Data?.Select(kline => kline.ToQuote()) ?? Enumerable.Empty<Quote>();
         }
     }
 }

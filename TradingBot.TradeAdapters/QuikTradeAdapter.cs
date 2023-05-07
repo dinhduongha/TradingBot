@@ -36,9 +36,18 @@ namespace TradingBot.TradeAdapters
             return tickers;
         }
 
-        public Task<IEnumerable<IQuote>> GetQuotes(string code, Interval interval, DateTime from, DateTime to)
+        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, 
+            DateTime from, DateTime to)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
+            if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
+            if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
+
+            var candles = await _quik.Candles.GetAllCandles("TQBR", code, interval.MapInterval());
+            var filteredCandles = candles.Where(candle => candle.Datetime.ToDateTime() >= from 
+                && candle.Datetime.ToDateTime() <= to);
+
+            return filteredCandles.Select(candle => candle.ToQuote());
         }
     }
 }

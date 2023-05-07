@@ -1,5 +1,6 @@
 ﻿using Okex.Net;
 using Okex.Net.Enums;
+using Okex.Net.Helpers;
 using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
 using TradingBot.HttpClients.Okx.Extensions;
@@ -32,9 +33,18 @@ namespace TradingBot.TradeAdapters
             return response?.Data?.Select(instrument => instrument.ToStockTicker()) ?? Enumerable.Empty<StockTicker>();
         }
 
-        public Task<IEnumerable<IQuote>> GetQuotes(string code, Interval interval, DateTime from, DateTime to)
+        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, 
+            DateTime from, DateTime to)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
+            if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
+            if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
+
+            var response = await _client.GetCandlesticksHistoryAsync(code, interval.MapInterval(), 
+                to.ToUnixTimeMilliSeconds(), from.ToUnixTimeMilliSeconds());
+            var klines = response?.Data;
+
+            return response?.Data?.Select(kline => kline.ToQuote()) ?? Enumerable.Empty<Quote>();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TradingBot.TradeAdapters.Tests
+﻿using TradingBot.Core.Domain;
+
+namespace TradingBot.TradeAdapters.Tests
 {
     public class QuikTradeAdapterTests
     {
@@ -29,6 +31,16 @@
         public async Task GetTickers_ReturnNotNullAndNotEmptyResult()
         {
             var result = await _adapter.GetTickers();
+
+            Assert.NotNull(result);
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public async Task GetHistoricalQuotes_WithParams_ReturnNotNullAndNotEmptyResult()
+        {
+            var result = await _adapter.GetHistoricalQuotes("GAZP", Interval.OneDay,
+                DateTime.UtcNow.AddMonths(-2), DateTime.UtcNow);
 
             Assert.NotNull(result);
             Assert.NotEmpty(result);

@@ -9,6 +9,6 @@ namespace TradingBot.TradeAdapters
 
         Task<IEnumerable<StockTicker>> GetTickers();
 
-        Task<IEnumerable<IQuote>> GetQuotes(string code, Interval interval, DateTime from, DateTime to);
+        Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, DateTime from, DateTime to);
     }
 }
