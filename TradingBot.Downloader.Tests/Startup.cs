@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TradingBot.HttpClients;
+using TradingBot.Quik;
 
 namespace TradingBot.Downloader.Tests
 {
