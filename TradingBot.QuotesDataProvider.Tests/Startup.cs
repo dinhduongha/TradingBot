@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TradingBot.HttpClients;
-using TradingBot.Quik;
 
-namespace TradingBot.Downloader.Tests
+namespace TradingBot.QuotesDataProvider.Tests
 {
     internal class Startup
     {

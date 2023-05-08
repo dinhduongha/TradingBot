@@ -3,20 +3,20 @@ using TradingBot.Core.Actor;
 using TradingBot.Core.Domain;
 using TradingBot.TradeAdapters;
 
-namespace TradingBot.Downloader
+namespace TradingBot.QuotesDataProvider
 {
-    public class DownloaderQuotesActor : AbstractActor<StockTicker>
+    internal class QuotesDataProviderActor : AbstractActor<StockTicker>
     {
         private readonly DateTime _to;
         private readonly DateTime _from;
         private readonly Interval _interval;
         private readonly ITradeAdapter _adapter;
-        private readonly DownloaderQuotesEventBus _eventBus;
+        private readonly QuotesDataProviderEventBus _eventBus;
 
         public override int ThreadCount => 20;
 
-        public DownloaderQuotesActor(DateTime from, DateTime to, Interval interval, ITradeAdapter adapter,
-            DownloaderQuotesEventBus eventBus)
+        public QuotesDataProviderActor(DateTime from, DateTime to, Interval interval, ITradeAdapter adapter,
+            QuotesDataProviderEventBus eventBus)
         {
             _to = to;
             _from = from;

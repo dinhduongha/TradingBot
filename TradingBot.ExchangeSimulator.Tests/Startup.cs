@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace TradingBot.Simulator.Tests
+namespace TradingBot.ExchangeSimulator.Tests
 {
     internal class Startup
     {

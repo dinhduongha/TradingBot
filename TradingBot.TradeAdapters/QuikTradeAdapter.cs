@@ -44,10 +44,10 @@ namespace TradingBot.TradeAdapters
             if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
 
             var candles = await _quik.Candles.GetAllCandles("TQBR", code, interval.MapInterval());
-            var filteredCandles = candles.Where(candle => candle.Datetime.ToDateTime() >= from 
-                && candle.Datetime.ToDateTime() <= to);
 
-            return filteredCandles.Select(candle => candle.ToQuote());
+            return candles
+                .Where(candle => candle.Datetime.ToDateTime() >= from && candle.Datetime.ToDateTime() <= to)
+                .Select(candle => candle.ToQuote());
         }
     }
 }

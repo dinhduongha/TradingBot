@@ -1,9 +1,9 @@
 ﻿using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
 
-namespace TradingBot.Downloader
+namespace TradingBot.QuotesDataProvider
 {
-    public class DownloaderQuotesEventBus
+    internal class QuotesDataProviderEventBus
     {
         public event Action<StockTicker, IEnumerable<IQuote>> OnDownloadedQuotes;
 

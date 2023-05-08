@@ -2,7 +2,7 @@
 
 namespace TradingBot.TechnicalAnalyze
 {
-    public interface ITradeIdea
+    public interface ITradingIdea
     {
         IBuyOrder? BuyOrder { get; }
 
