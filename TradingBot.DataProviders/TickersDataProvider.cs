@@ -12,11 +12,14 @@ namespace TradingBot.DataProviders
             _adapter = adapter;
         }
 
-        public async Task<Dictionary<string, StockTicker>> ProvideAsync()
+        public async IAsyncEnumerable<StockTicker> Provide()
         {
             var tickers = await _adapter.GetTickers();
 
-            return tickers.ToDictionary(ticker => ticker.Code, ticker => ticker);
+            foreach (var ticker in tickers)
+            {
+                yield return ticker;
+            }
         }
     }
 }

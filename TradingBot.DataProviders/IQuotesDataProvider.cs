@@ -1,10 +1,10 @@
 ﻿using Skender.Stock.Indicators;
-using TradingBot.Core.Abstracts;
+using TradingBot.Core.Domain;
 
 namespace TradingBot.DataProviders
 {
-    public interface IQuotesDataProvider : IProviderLazy<Dictionary<string, IQuote>>
+    public interface IQuotesDataProvider
     {
-
+        IAsyncEnumerable<IQuote> Provide(string code);
     }
 }

@@ -2,11 +2,11 @@
 {
     public interface IProvider<TResult>
     {
-        Task<TResult> ProvideAsync();
+        TResult Provide();
     }
 
-    public interface IProviderLazy<TResult>
+    public interface IAsyncLazyProvider<TResult> : IProvider<IAsyncEnumerable<TResult>>
     {
-        IAsyncEnumerable<TResult> ProvideLazyAsync();
+
     }
 }

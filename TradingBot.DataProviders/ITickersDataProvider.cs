@@ -3,7 +3,7 @@ using TradingBot.Core.Domain;
 
 namespace TradingBot.DataProviders
 {
-    public interface ITickersDataProvider : IProvider<Dictionary<string, StockTicker>>
+    public interface ITickersDataProvider : IAsyncLazyProvider<StockTicker>
     {
 
     }

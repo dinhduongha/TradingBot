@@ -4,80 +4,51 @@ using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders
 {
-    public class QuotesDataProvider : IQuotesDataProvider, IDisposable
+    public class QuotesDataProvider : IQuotesDataProvider
     {
         private readonly ITradeAdapter _adapter;
-        private readonly QuotesDataProviderEventBus _eventBus;
 
         private DateTime _to;
         private DateTime _from;
         private Interval _interval;
-        private QuotesDataProviderActor? _actor;
-        private Dictionary<string, IEnumerable<IQuote>> _quotes = new Dictionary<string, IEnumerable<IQuote>>();
 
         public QuotesDataProvider(DateTime from, DateTime to, Interval interval, ITradeAdapter adapter)
         {
-            _adapter = adapter;
-            _eventBus = new QuotesDataProviderEventBus();
-            _eventBus.Subscribe(OnDownloadedQuotes);
+            if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
+            if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
 
             _to = to;
             _from = from;
+            _adapter = adapter;
             _interval = interval;
         }
 
-        public async IAsyncEnumerable<Dictionary<string, IEnumerable<IQuote>>> ProvideTickersQuotesLazyAsync()
+        public async IAsyncEnumerable<IQuote> Provide(string code)
         {
-            var limit = 499;
-            var tickers = await _adapter.GetTickers();
+            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
 
-            var increaseAction = new Func<DateTime, DateTime>((time) => (_to - time).TotalSeconds >= limit
-                ? time.AddSeconds((int)_interval * limit)
-                : _to);
+            var to = _to;
+            var result = new List<IQuote>();
 
-            for (var time = _from; time <= _to; time = increaseAction.Invoke(time))
+            while (to >= _from)
             {
-                _actor = new QuotesDataProviderActor(time, increaseAction.Invoke(time), _interval, _adapter, _eventBus);
+                var quotes = await _adapter.GetHistoricalQuotes(code, _interval, _from, to);
 
-                _quotes.Clear();
-
-                foreach (var ticker in tickers)
+                if (quotes != null && quotes.Count() > 0)
                 {
-                    await _actor.SendAsync(ticker.Code);
-                }
+                    result.AddRange(quotes);
 
-                while (_quotes.Count < tickers.Count())
-                {
-                    await Task.Delay(100);
+                    to = quotes.Min(quote => quote.Date).AddSeconds(-(int)_interval);
                 }
-
-                yield return _quotes;
+                else break;
             }
-        }
 
-        public async IAsyncEnumerable<Dictionary<string, IQuote>> ProvideLazyAsync()
-        {
-            await foreach (var tickersQuotes in ProvideTickersQuotesLazyAsync())
+            result = result.OrderBy(quote => quote.Date).ToList();
+
+            foreach (var quote in result)
             {
-                var min = tickersQuotes.Min(ticker => ticker.Value.Min(quote => quote.Date));
-                var max = tickersQuotes.Max(ticker => ticker.Value.Max(quote => quote.Date));
-
-                for (var time = min; time <= max; time = time.AddSeconds((int)_interval))
-                {
-                    yield return tickersQuotes.Where(ticker => ticker.Value.Any(quote => quote.Date == time))
-                        .ToDictionary(ticker => ticker.Key, ticker => ticker.Value.Single(quote => quote.Date == time));
-                }
+                yield return quote;
             }
-        }
-
-        public void Dispose()
-        {
-            _eventBus.Unsubscribe(OnDownloadedQuotes);
-        }
-
-        private void OnDownloadedQuotes(string ticker, IEnumerable<IQuote> quotes)
-        {
-            _quotes.Add(ticker, quotes);
         }
     }
 }

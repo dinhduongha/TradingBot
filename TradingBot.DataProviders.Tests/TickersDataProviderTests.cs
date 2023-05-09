@@ -1,4 +1,5 @@
 ﻿using Bybit.Net.Clients;
+using TradingBot.Core.Domain;
 using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders.Tests
@@ -13,12 +14,17 @@ namespace TradingBot.DataProviders.Tests
         }
 
         [Fact]
-        public async Task ProvideAsync_ReturnNotNullAndNotEmptyResult()
+        public async Task Provide_ReturnNotNullAndNotEmptyResult()
         {
-            var result = await _provider.ProvideAsync();
+            var tickers = new List<StockTicker>();
 
-            Assert.NotNull(result);
-            Assert.NotEmpty(result);
+            await foreach (var ticker in _provider.Provide())
+            {
+                tickers.Add(ticker);
+            }
+
+            Assert.NotNull(tickers);
+            Assert.NotEmpty(tickers);
         }
     }
 }

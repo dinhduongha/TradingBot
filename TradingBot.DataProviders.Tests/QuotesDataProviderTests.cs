@@ -15,20 +15,16 @@ namespace TradingBot.DataProviders.Tests
         }
 
         [Fact]
-        public async Task ProvideTickersQuotesLazyAsync_WithParams_ReturnNotNullAndNotEmptyResult()
+        public async Task Provide_WithParams_ReturnNotNullAndNotEmptyResult()
         {
-            var result = new Dictionary<string, List<IQuote>>();
+            var result = new List<IQuote>();
 
-            var downloader = new QuotesDataProvider(DateTime.UtcNow.AddDays(-3), DateTime.UtcNow,
+            var provider = new QuotesDataProvider(DateTime.UtcNow.AddDays(-3), DateTime.UtcNow,
                 Interval.FiveMinutes, _adapter);
 
-            await foreach (var tickersQuotes in downloader.ProvideTickersQuotesLazyAsync()) 
+            await foreach (var quote in provider.Provide("ETHUSDT"))
             {
-                foreach (var tickerQoutes in tickersQuotes)
-                {
-                    if (!result.ContainsKey(tickerQoutes.Key)) result.Add(tickerQoutes.Key, tickerQoutes.Value.ToList());
-                    else result[tickerQoutes.Key].AddRange(tickerQoutes.Value);
-                }
+                result.Add(quote);
             }
 
             Assert.NotNull(result);
