@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TradingBot.ExchangeSimulator\TradingBot.ExchangeSimulator.csproj" />
+    <ProjectReference Include="..\TradingBot.TradingStrategiesTester\TradingBot.TradingStrategiesTester.csproj" />
   </ItemGroup>
 
 </Project>

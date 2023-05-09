@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TradingBot.HttpClients;
 
-namespace TradingBot.ExchangeSimulator.Tests
+namespace TradingBot.TradingStrategiesTester.Tests
 {
     internal class Startup
     {
