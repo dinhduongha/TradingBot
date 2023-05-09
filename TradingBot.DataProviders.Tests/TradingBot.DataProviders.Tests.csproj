@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TradingBot.QuotesDataProvider\TradingBot.QuotesDataProvider.csproj" />
+    <ProjectReference Include="..\TradingBot.DataProviders\TradingBot.DataProviders.csproj" />
   </ItemGroup>
 
 </Project>

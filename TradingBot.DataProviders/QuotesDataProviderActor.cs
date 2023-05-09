@@ -3,9 +3,9 @@ using TradingBot.Core.Actor;
 using TradingBot.Core.Domain;
 using TradingBot.TradeAdapters;
 
-namespace TradingBot.QuotesDataProvider
+namespace TradingBot.DataProviders
 {
-    internal class QuotesDataProviderActor : AbstractActor<StockTicker>
+    internal class QuotesDataProviderActor : AbstractActor<string>
     {
         private readonly DateTime _to;
         private readonly DateTime _from;
@@ -25,19 +25,19 @@ namespace TradingBot.QuotesDataProvider
             _eventBus = eventBus;
         }
 
-        public override Task HandleError(StockTicker message, Exception ex)
+        public override Task HandleError(string message, Exception ex)
         {
             throw new NotImplementedException();
         }
 
-        public override async Task HandleMessage(StockTicker message)
+        public override async Task HandleMessage(string message)
         {
             var historicalQuotes = new List<IQuote>();
             var to = _to;
 
             while (to >= _from)
             {
-                var quotes = await _adapter.GetHistoricalQuotes(message.Code, _interval, _from, to);
+                var quotes = await _adapter.GetHistoricalQuotes(message, _interval, _from, to);
 
                 if (quotes != null && quotes.Count() > 0)
                 {

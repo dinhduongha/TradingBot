@@ -4,4 +4,9 @@
     {
         Task<TResult> ProvideAsync();
     }
+
+    public interface IProviderLazy<TResult>
+    {
+        IAsyncEnumerable<TResult> ProvideLazyAsync();
+    }
 }

@@ -49,30 +49,19 @@ namespace TradingBot.Core.Domain.Chart
         public void Add(IQuote quote)
         {
             ClearQuotes();
-
             AddOrUpdateQuote(quote);
-
             UpdateIndicators();
         }
 
         private void ClearQuotes()
         {
-            if (Quotes.Count == MaxCountQuotes)
-            {
-                Quotes.Remove(Quotes.ElementAt(0));
-            }
+            if (Quotes.Count == MaxCountQuotes) Quotes.Remove(Quotes.ElementAt(0));
         }
 
         private void AddOrUpdateQuote(IQuote quote)
         {
-            if (Quotes.ContainsKey(quote.Date))
-            {
-                Quotes[quote.Date] = quote;
-            }
-            else
-            {
-                Quotes.Add(quote.Date, quote);
-            }
+            if (Quotes.ContainsKey(quote.Date)) Quotes[quote.Date] = quote;
+            else Quotes.Add(quote.Date, quote);
         }
 
         private void UpdateIndicators()

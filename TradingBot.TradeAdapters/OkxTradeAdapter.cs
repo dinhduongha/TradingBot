@@ -3,7 +3,7 @@ using Okex.Net.Enums;
 using Okex.Net.Helpers;
 using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
-using TradingBot.HttpClients.Okx.Extensions;
+using TradingBot.HttpClients.Okx;
 
 namespace TradingBot.TradeAdapters
 {

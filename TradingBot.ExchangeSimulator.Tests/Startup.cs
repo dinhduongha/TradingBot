@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using TradingBot.HttpClients;
 
 namespace TradingBot.ExchangeSimulator.Tests
 {
@@ -6,7 +7,7 @@ namespace TradingBot.ExchangeSimulator.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddHttpClients();
         }
     }
 }

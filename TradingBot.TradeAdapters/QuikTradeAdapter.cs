@@ -1,6 +1,6 @@
 ﻿using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
-using TradingBot.Quik.Extensions;
+using TradingBot.Quik;
 
 namespace TradingBot.TradeAdapters
 {

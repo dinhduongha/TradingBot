@@ -1,7 +1,7 @@
 ﻿using Binance.Net.Clients;
 using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
-using TradingBot.HttpClients.Binance.Extensions;
+using TradingBot.HttpClients.Binance;
 
 namespace TradingBot.TradeAdapters
 {

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TradingBot.QuotesDataProvider\TradingBot.QuotesDataProvider.csproj" />
+    <ProjectReference Include="..\TradingBot.DataProviders\TradingBot.DataProviders.csproj" />
     <ProjectReference Include="..\TradingBot.TechnicalAnalyze\TradingBot.TechnicalAnalyze.csproj" />
   </ItemGroup>
 

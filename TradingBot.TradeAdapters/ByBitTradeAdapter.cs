@@ -2,7 +2,7 @@
 using Bybit.Net.Enums;
 using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
-using TradingBot.HttpClients.ByBit.Extensions;
+using TradingBot.HttpClients.ByBit;
 
 namespace TradingBot.TradeAdapters
 {
