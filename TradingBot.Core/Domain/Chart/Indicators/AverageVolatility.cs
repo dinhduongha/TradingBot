@@ -17,15 +17,15 @@ namespace TradingBot.Core.Domain.Chart.Indicators
             Recalculate(quotes);
         }
 
-        public override IDictionary<DateTime, double?> Calculate(IEnumerable<IQuote> quotes)
+        public override IDictionary<DateTime, decimal?> Calculate(IEnumerable<IQuote> quotes)
         {
-            var result = new Dictionary<DateTime, double?>();
+            var result = new Dictionary<DateTime, decimal?>();
             var sortedQuotes = quotes.OrderBy(quote => quote.Date);
 
             for (var i = 0; i < quotes.Count(); i++)
             {
                 result.Add(sortedQuotes.ElementAt(i).Date, sortedQuotes.Where((quote, index) => index <= i &&
-                    i - index <= Length).Select(quote => Math.Abs(Convert.ToDouble(quote.Close - quote.Open))).Average());
+                    i - index <= Length).Select(quote => Math.Abs(quote.Close - quote.Open)).Average());
             }
 
             return result;

@@ -1,4 +1,5 @@
-﻿using TradingBot.Core.Domain.Chart;
+﻿using TradingBot.Core.Domain;
+using TradingBot.Core.Domain.Chart;
 
 namespace TradingBot.TechnicalAnalyze
 {
@@ -6,6 +7,6 @@ namespace TradingBot.TechnicalAnalyze
     {
         string Name { get; }
 
-        ITradingIdea? SuggestIdea(IEnumerable<ChartDataItem> chartDataItems);
+        ITradingIdea? SuggestIdea(StockTicker ticker, IEnumerable<ChartDataItem> chartDataItems);
     }
 }

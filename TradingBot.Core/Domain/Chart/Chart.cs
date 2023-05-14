@@ -31,25 +31,17 @@ namespace TradingBot.Core.Domain.Chart
 
             Indicators = new List<IIndicator>()
             {
-                new Bop(quotes),
-                new Rsi(quotes, 14),
                 new Atr(quotes, 14),
-                new Ema(quotes, 5),
                 new Ema(quotes, 10),
-                new Ema(quotes, 20),
-                new Ema(quotes, 50),
-                new Ema(quotes, 100),
-                new Ema(quotes, 200),
-                new ElderRay(quotes, 13),
-                new AverageLiquidity(quotes, 5),
-                new AverageVolatility(quotes, 5),
             };
         }
 
         public void Add(IQuote quote)
         {
             ClearQuotes();
+
             AddOrUpdateQuote(quote);
+
             UpdateIndicators();
         }
 

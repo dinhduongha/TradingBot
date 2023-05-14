@@ -8,14 +8,14 @@ namespace TradingBot.Core.Domain.Chart
 
         string Name { get; }
 
-        IDictionary<DateTime, double?> Data { get; set; }
+        IDictionary<DateTime, decimal?> Data { get; set; }
 
-        double? this[int index] { get; }
+        decimal? this[int index] { get; }
 
-        double? this[DateTime date] { get; }
+        decimal? this[DateTime date] { get; }
 
         void Recalculate(IEnumerable<IQuote> quotes);
 
-        IDictionary<DateTime, double?> Calculate(IEnumerable<IQuote> quotes);
+        IDictionary<DateTime, decimal?> Calculate(IEnumerable<IQuote> quotes);
     }
 }

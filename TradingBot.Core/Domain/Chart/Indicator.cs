@@ -8,17 +8,17 @@ namespace TradingBot.Core.Domain.Chart
 
         public abstract string Name { get; }
 
-        public IDictionary<DateTime, double?> Data { get; set; }
+        public IDictionary<DateTime, decimal?> Data { get; set; }
 
-        public double? this[int index] => index < 0 || index >= Data.Count
+        public decimal? this[int index] => index < 0 || index >= Data.Count
             ? throw new ArgumentOutOfRangeException(nameof(index)) : Data.ElementAt(index).Value;
 
-        public double? this[DateTime date] => Data.ContainsKey(date)
+        public decimal? this[DateTime date] => Data.ContainsKey(date)
             ? Data[date] : throw new IndexOutOfRangeException(nameof(date));
 
         public Indicator()
         {
-            Data = new Dictionary<DateTime, double?>();
+            Data = new Dictionary<DateTime, decimal?>();
         }
 
         public void Recalculate(IEnumerable<IQuote> quotes)
@@ -28,6 +28,6 @@ namespace TradingBot.Core.Domain.Chart
                 .ToDictionary(data => data.Key, data => data.Value);
         }
 
-        public abstract IDictionary<DateTime, double?> Calculate(IEnumerable<IQuote> quotes);
+        public abstract IDictionary<DateTime, decimal?> Calculate(IEnumerable<IQuote> quotes);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Skender.Stock.Indicators;
+using TradingBot.Core.Extensions;
 
 namespace TradingBot.Core.Domain.Chart.Indicators
 {
@@ -11,9 +12,9 @@ namespace TradingBot.Core.Domain.Chart.Indicators
             Recalculate(quotes);
         }
 
-        public override IDictionary<DateTime, double?> Calculate(IEnumerable<IQuote> quotes)
+        public override IDictionary<DateTime, decimal?> Calculate(IEnumerable<IQuote> quotes)
         {
-            return quotes.GetBop().ToDictionary(data => data.Date, data => data.Bop);
+            return quotes.GetBop().ToDictionary(data => data.Date, data => data.Bop.ToDecimal());
         }
     }
 }
