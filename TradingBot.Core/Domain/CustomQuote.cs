@@ -1,5 +1,4 @@
 ﻿using Skender.Stock.Indicators;
-using System.Globalization;
 
 namespace TradingBot.Core.Domain
 {
@@ -28,13 +27,5 @@ namespace TradingBot.Core.Domain
             Volume = volume;
             Date = date;
         }
-
-        public CustomQuote(string[] values) : this(decimal.Parse(values[3], CultureInfo.InvariantCulture),
-            decimal.Parse(values[1], CultureInfo.InvariantCulture), decimal.Parse(values[2], CultureInfo.InvariantCulture),
-            decimal.Parse(values[4], CultureInfo.InvariantCulture), decimal.Parse(values[5], CultureInfo.InvariantCulture), 
-            DateTime.UnixEpoch.AddMilliseconds(double.Parse(values[0], CultureInfo.InvariantCulture)))
-        {
-
-        } 
     }
 }

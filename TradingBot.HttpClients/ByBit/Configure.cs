@@ -7,7 +7,7 @@ namespace TradingBot.HttpClients.ByBit
     {
         public static void AddByBitHttpClients(this IServiceCollection services)
         {
-            services.AddTransient(factory => new BybitClient()); 
+            services.AddSingleton(factory => new BybitClient()); 
         }
     }
 }
