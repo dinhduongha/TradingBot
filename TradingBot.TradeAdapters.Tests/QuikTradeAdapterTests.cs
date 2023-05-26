@@ -1,4 +1,5 @@
 ﻿using TradingBot.Core.Domain;
+using TradingBot.Quik;
 
 namespace TradingBot.TradeAdapters.Tests
 {
@@ -6,9 +7,9 @@ namespace TradingBot.TradeAdapters.Tests
     {
         private readonly ITradeAdapter _adapter;
 
-        public QuikTradeAdapterTests(QuikSharp.Quik quik)
+        public QuikTradeAdapterTests(QuikSharp.Quik quik, QuikConverter converter)
         {
-            _adapter = new QuikTradeAdapter(quik);
+            _adapter = new QuikTradeAdapter(quik, converter);
         }
 
         [Fact]

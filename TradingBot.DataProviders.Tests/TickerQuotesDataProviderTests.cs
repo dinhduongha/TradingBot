@@ -1,6 +1,7 @@
 ﻿using Bybit.Net.Clients;
 using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
+using TradingBot.CryptoExchanges.ByBit;
 using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders.Tests
@@ -10,9 +11,9 @@ namespace TradingBot.DataProviders.Tests
         private readonly ITradeAdapter _adapter;
         private readonly ITickersDataProvider _tickersDataProvider;
 
-        public TickerQuotesDataProviderTests(BybitClient httpClient)
+        public TickerQuotesDataProviderTests(BybitClient httpClient, ByBitConverter converter)
         {
-            _adapter = new ByBitTradeAdapter(httpClient);
+            _adapter = new ByBitTradeAdapter(httpClient, converter);
             _tickersDataProvider = new TickersDataProvider(_adapter);
         }
 

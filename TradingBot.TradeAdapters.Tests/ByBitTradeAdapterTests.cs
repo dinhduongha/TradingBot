@@ -1,5 +1,6 @@
 ﻿using Bybit.Net.Clients;
 using TradingBot.Core.Domain;
+using TradingBot.CryptoExchanges.ByBit;
 
 namespace TradingBot.TradeAdapters.Tests
 {
@@ -7,9 +8,9 @@ namespace TradingBot.TradeAdapters.Tests
     {
         private readonly ITradeAdapter _adapter;
 
-        public ByBitTradeAdapterTests(BybitClient client)
+        public ByBitTradeAdapterTests(BybitClient client, ByBitConverter converter)
         {
-            _adapter = new ByBitTradeAdapter(client);
+            _adapter = new ByBitTradeAdapter(client, converter);
         }
 
         [Fact]

@@ -1,5 +1,6 @@
 ﻿using Bybit.Net.Clients;
 using TradingBot.Core.Domain;
+using TradingBot.CryptoExchanges.ByBit;
 using TradingBot.DataProviders;
 using TradingBot.TechnicalAnalyze.Strategies;
 using TradingBot.TradeAdapters;
@@ -11,9 +12,9 @@ namespace TradingBot.TradingStrategiesTester.Tests
         private readonly ITradeAdapter _adapter;
         private readonly ITickersDataProvider _tickersDataProvider;
 
-        public TradingStrategiesTesterTests(BybitClient httpClient) 
+        public TradingStrategiesTesterTests(BybitClient httpClient, ByBitConverter converter) 
         {
-            _adapter = new ByBitTradeAdapter(httpClient);
+            _adapter = new ByBitTradeAdapter(httpClient, converter);
             _tickersDataProvider = new TickersDataProvider(_adapter);
         }
 

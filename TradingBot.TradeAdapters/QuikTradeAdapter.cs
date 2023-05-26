@@ -7,10 +7,12 @@ namespace TradingBot.TradeAdapters
     public class QuikTradeAdapter : ITradeAdapter
     {
         private readonly QuikSharp.Quik _quik;
+        private readonly QuikConverter _converter;
 
-        public QuikTradeAdapter(QuikSharp.Quik quik)
+        public QuikTradeAdapter(QuikSharp.Quik quik, QuikConverter converter)
         {
             _quik = quik;
+            _converter = converter;
         }
 
         public async Task<StockTicker> GetTicker(string code)
@@ -19,7 +21,7 @@ namespace TradingBot.TradeAdapters
 
             var ticker = await _quik.Class.GetSecurityInfo("TQBR", code);
 
-            return ticker != null ? ticker.ToStockTicker() : throw new NotSupportedException(code);
+            return ticker != null ? _converter.ToTicker(ticker) : throw new NotSupportedException(code);
         }
 
         public async Task<IEnumerable<StockTicker>> GetTickers()
@@ -43,11 +45,12 @@ namespace TradingBot.TradeAdapters
             if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
             if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
 
-            var candles = await _quik.Candles.GetAllCandles("TQBR", code, interval.MapInterval());
+            var candles = await _quik.Candles.GetAllCandles("TQBR", code, _converter.ToInterval(interval));
 
             return candles
-                .Where(candle => candle.Datetime.ToDateTime() >= from && candle.Datetime.ToDateTime() <= to)
-                .Select(candle => candle.ToQuote());
+                .Where(candle => _converter.ToDateTime(candle.Datetime) >= from &&
+                    _converter.ToDateTime(candle.Datetime) <= to)
+                .Select(_converter.ToQuote);
         }
     }
 }

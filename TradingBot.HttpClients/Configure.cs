@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TradingBot.HttpClients.Binance;
+using TradingBot.HttpClients.Bitfinex;
 using TradingBot.HttpClients.ByBit;
 using TradingBot.HttpClients.Okx;
 
@@ -12,6 +13,7 @@ namespace TradingBot.HttpClients
             services.AddOkxHttpClients();
             services.AddByBitHttpClients();
             services.AddBinanceHttpClients();
+            services.AddBitfinexHttpClients();
 
             services.AddSingleton<HttpContext>();
         }

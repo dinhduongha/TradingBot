@@ -1,5 +1,6 @@
 ﻿using Okex.Net;
 using TradingBot.Core.Domain;
+using TradingBot.CryptoExchanges.Okx;
 
 namespace TradingBot.TradeAdapters.Tests
 {
@@ -7,9 +8,9 @@ namespace TradingBot.TradeAdapters.Tests
     {
         private readonly ITradeAdapter _adapter;
 
-        public OkxTradeAdapterTests(OkexClient client)
+        public OkxTradeAdapterTests(OkexClient client, OkxConverter converter)
         {
-            _adapter = new OkxTradeAdapter(client);
+            _adapter = new OkxTradeAdapter(client, converter);
         }
 
         [Fact]

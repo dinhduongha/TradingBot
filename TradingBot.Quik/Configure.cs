@@ -10,6 +10,7 @@ namespace TradingBot.Quik
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             services.AddSingleton(factory => new QuikSharp.Quik());
+            services.AddSingleton(factory => new QuikConverter());
         }
     }
 }

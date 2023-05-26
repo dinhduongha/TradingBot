@@ -1,5 +1,6 @@
 ﻿using Binance.Net.Clients;
 using TradingBot.Core.Domain;
+using TradingBot.CryptoExchanges.Binance;
 
 namespace TradingBot.TradeAdapters.Tests
 {
@@ -7,9 +8,9 @@ namespace TradingBot.TradeAdapters.Tests
     {
         private readonly ITradeAdapter _adapter;
 
-        public BinanceTradeAdapterTests(BinanceClient client)
+        public BinanceTradeAdapterTests(BinanceClient client, BinanceConverter converter)
         {
-            _adapter = new BinanceTradeAdapter(client);
+            _adapter = new BinanceTradeAdapter(client, converter);
         }
 
         [Fact]
