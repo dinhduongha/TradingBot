@@ -26,14 +26,14 @@ namespace TradingBot.TradeAdapters
 
             var ticker = response?.Data?.SingleOrDefault();
 
-            return ticker != null ? _converter.ToTicker(ticker) : throw new NotSupportedException(code);
+            return ticker != null ? _converter.Ticker.Convert(ticker) : throw new NotSupportedException(code);
         }
 
         public async Task<IEnumerable<StockTicker>> GetTickers()
         {
             var response = await _client.GetInstrumentsAsync(OkexInstrumentType.Spot);
 
-            return response?.Data?.Select(_converter.ToTicker) ?? Enumerable.Empty<StockTicker>();
+            return response?.Data?.Select(_converter.Ticker.Convert) ?? Enumerable.Empty<StockTicker>();
         }
 
         public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, 
@@ -43,10 +43,10 @@ namespace TradingBot.TradeAdapters
             if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
             if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
 
-            var response = await _client.GetCandlesticksHistoryAsync(code, _converter.ToInterval(interval), 
+            var response = await _client.GetCandlesticksHistoryAsync(code, _converter.Interval.Convert(interval), 
                 to.ToUnixTimeMilliSeconds(), from.ToUnixTimeMilliSeconds());
 
-            return response?.Data?.Select(_converter.ToQuote) ?? Enumerable.Empty<Quote>();
+            return response?.Data?.Select(_converter.Quote.Convert) ?? Enumerable.Empty<Quote>();
         }
     }
 }
