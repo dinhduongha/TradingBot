@@ -3,22 +3,23 @@ using TradingBot.Core.Domain;
 
 namespace TradingBot.DataProviders
 {
-    public class TickerQuotesDataProvider : ITickerQuotesDataProvider
+    public class InstrumentQuotesDataProvider : IInstrumentQuotesDataProvider
     {
         private readonly IQuotesDataProvider _quotesDataProvider;
-        private readonly ITickersDataProvider _tickersDataProvider;
+        private readonly IInstrumentsDataProvider _instrumentsDataProvider;
 
-        public TickerQuotesDataProvider(IQuotesDataProvider quotesDataProvider, ITickersDataProvider tickersDataProvider)
+        public InstrumentQuotesDataProvider(IQuotesDataProvider quotesDataProvider, 
+            IInstrumentsDataProvider tickersDataProvider)
         {
             _quotesDataProvider = quotesDataProvider;
-            _tickersDataProvider = tickersDataProvider;
+            _instrumentsDataProvider = tickersDataProvider;
         }
 
-        public async IAsyncEnumerable<KeyValuePair<StockTicker, IQuote>> Provide()
+        public async IAsyncEnumerable<KeyValuePair<Instrument, IQuote>> Provide()
         {
-            var tickers = await GetTickersAsync();
+            var tickers = await GetInstrumentsAsync();
 
-            var tickersQuotes = await GetTickersQuotesAsync(tickers);
+            var tickersQuotes = await GetInstrumentsQuotesAsync(tickers);
 
             tickersQuotes = tickersQuotes.OrderBy(pair => pair.Value.Date).ToList();
 
@@ -28,11 +29,11 @@ namespace TradingBot.DataProviders
             }
         }
 
-        private async Task<IEnumerable<StockTicker>> GetTickersAsync()
+        private async Task<IEnumerable<Instrument>> GetInstrumentsAsync()
         {
-            var result = new List<StockTicker>();
+            var result = new List<Instrument>();
 
-            await foreach (var ticker in _tickersDataProvider.Provide())
+            await foreach (var ticker in _instrumentsDataProvider.Provide())
             {
                 result.Add(ticker);
             }
@@ -40,10 +41,10 @@ namespace TradingBot.DataProviders
             return result;
         }
 
-        private async Task<IEnumerable<KeyValuePair<StockTicker, IQuote>>> GetTickersQuotesAsync(
-            IEnumerable<StockTicker> tickers)
+        private async Task<IEnumerable<KeyValuePair<Instrument, IQuote>>> GetInstrumentsQuotesAsync(
+            IEnumerable<Instrument> tickers)
         {
-            var result = new List<KeyValuePair<StockTicker, IQuote>>();
+            var result = new List<KeyValuePair<Instrument, IQuote>>();
 
             var tasksCount = 25;
 
@@ -57,9 +58,9 @@ namespace TradingBot.DataProviders
                 {
                     var task = Task.Run(async () =>
                     {
-                        await foreach (var quote in _quotesDataProvider.Provide(ticker.Code))
+                        await foreach (var quote in _quotesDataProvider.Provide(ticker.Symbol))
                         {
-                            result.Add(new KeyValuePair<StockTicker, IQuote>(ticker, quote));
+                            result.Add(new KeyValuePair<Instrument, IQuote>(ticker, quote));
                         }
                     });
 

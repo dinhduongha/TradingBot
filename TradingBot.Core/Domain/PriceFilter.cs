@@ -2,11 +2,11 @@
 {
     public class PriceFilter
     {
-        public decimal? MinStep { get; }
+        public decimal MinStep { get; }
 
-        public PriceFilter(decimal? minStep)
+        public PriceFilter(decimal minStep)
         {
-            if (minStep != null && minStep <= 0) throw new ArgumentOutOfRangeException(nameof(minStep));
+            if (minStep <= 0) throw new ArgumentOutOfRangeException(nameof(minStep));
 
             MinStep = minStep;
         }

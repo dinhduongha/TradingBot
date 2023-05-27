@@ -7,7 +7,7 @@ namespace TradingBot.TechnicalAnalyze.Strategies
     {
         public string Name => "Lev4and Strategy";
 
-        public ITradingIdea? SuggestIdea(StockTicker ticker, IEnumerable<ChartDataItem> chartDataItems)
+        public ITradingIdea? SuggestIdea(Instrument ticker, IEnumerable<ChartDataItem> chartDataItems)
         {
             return null;
         }

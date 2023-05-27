@@ -1,16 +1,15 @@
-﻿using Bitfinex.Net.Objects.Models.V1;
-using TradingBot.Core.Converters.Exchange;
+﻿using TradingBot.Core.Converters.Exchange;
 using TradingBot.Core.Domain;
 
 namespace TradingBot.CryptoExchanges.Bitfinex.Converters
 {
-    public class BitfinexTickerConverter : ITickerConverter<BitfinexSymbolDetails>
+    public class BitfinexTickerConverter : ITickerConverter
     {
-        public StockTicker Convert(BitfinexSymbolDetails input)
+        public string Convert(Symbol input)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
 
-            throw new NotImplementedException();
+            return $"{input.InstrumentCode}{input.Currency.Name}";
         }
     }
 }

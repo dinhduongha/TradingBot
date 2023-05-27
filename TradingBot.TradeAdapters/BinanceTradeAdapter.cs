@@ -16,37 +16,32 @@ namespace TradingBot.TradeAdapters
             _converter = converter;
         }
 
-        public async Task<StockTicker> GetTicker(string code)
+        public async Task<Instrument> GetInstrument(Symbol symbol)
         {
-            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
+            var ticker = _converter.Ticker.Convert(symbol);
+            var response = await _client.SpotApi.ExchangeData.GetExchangeInfoAsync(ticker);
+            var instrument = response?.Data?.Symbols?.SingleOrDefault();
 
-            var response = await _client.SpotApi.ExchangeData.GetExchangeInfoAsync(code);
-
-            var ticker = response?.Data?.Symbols?.SingleOrDefault();
-
-            return ticker != null ? _converter.Ticker.Convert(ticker) : throw new NotSupportedException(code);
+            if (instrument != null) return _converter.Instrument.Convert(instrument);
+            else throw new NotSupportedException(ticker);
         }
 
-        public async Task<IEnumerable<StockTicker>> GetTickers()
+        public async Task<IEnumerable<Instrument>> GetInstruments()
         {
             var response = await _client.SpotApi.ExchangeData.GetExchangeInfoAsync();
 
-            return response?.Data?.Symbols?.Select(_converter.Ticker.Convert) ?? Enumerable.Empty<StockTicker>();
+            return response?.Data?.Symbols?.Select(_converter.Instrument.Convert) ?? Enumerable.Empty<Instrument>();
         }
 
-        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, 
+        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(Symbol symbol, Interval interval, 
             DateTime from, DateTime to)
         {
-            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
-            if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
-            if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
+            var ticker = _converter.Ticker.Convert(symbol);
+            var response = await _client.SpotApi.ExchangeData.GetKlinesAsync(ticker, 
+                _converter.Interval.Convert(interval), from, to);
+            var quotes = response?.Data;
 
-            var response = await _client.SpotApi.ExchangeData
-                .GetKlinesAsync(code, _converter.Interval.Convert(interval), from, to);
-
-            var klines = response?.Data;
-
-            return response?.Data?.Select(_converter.Quote.Convert) ?? Enumerable.Empty<Quote>();
+            return quotes?.Select(_converter.Quote.Convert) ?? Enumerable.Empty<Quote>();
         }
     }
 }

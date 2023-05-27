@@ -1,11 +1,13 @@
 ﻿namespace TradingBot.Core.Converters.Exchange
 {
-    public interface IExchangeConverter<TQuote, TTicker, TInterval>
+    public interface IExchangeConverter<TQuote, TInstrument, TInterval>
     {
+        ITickerConverter Ticker { get; }
+
         IQuoteConverter<TQuote> Quote { get; }
 
-        ITickerConverter<TTicker> Ticker { get; }
-
         IIntervalConverter<TInterval> Interval { get; }
+
+        IInstrumentConverter<TInstrument> Instrument { get; }
     }
 }

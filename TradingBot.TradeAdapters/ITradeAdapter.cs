@@ -5,10 +5,10 @@ namespace TradingBot.TradeAdapters
 {
     public interface ITradeAdapter
     {
-        Task<StockTicker> GetTicker(string code);
+        Task<Instrument> GetInstrument(Symbol symbol);
 
-        Task<IEnumerable<StockTicker>> GetTickers();
+        Task<IEnumerable<Instrument>> GetInstruments();
 
-        Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, DateTime from, DateTime to);
+        Task<IEnumerable<IQuote>> GetHistoricalQuotes(Symbol symbol, Interval interval, DateTime from, DateTime to);
     }
 }

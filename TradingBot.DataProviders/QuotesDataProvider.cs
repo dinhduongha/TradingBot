@@ -23,16 +23,16 @@ namespace TradingBot.DataProviders
             _interval = interval;
         }
 
-        public async IAsyncEnumerable<IQuote> Provide(string code)
+        public async IAsyncEnumerable<IQuote> Provide(Symbol symbol)
         {
-            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
+            if (symbol == null) throw new ArgumentNullException(nameof(symbol));
 
             var to = _to;
             var result = new List<IQuote>();
 
             while (to >= _from)
             {
-                var quotes = await _adapter.GetHistoricalQuotes(code, _interval, _from, to);
+                var quotes = await _adapter.GetHistoricalQuotes(symbol, _interval, _from, to);
 
                 if (quotes != null && quotes.Count() > 0)
                 {

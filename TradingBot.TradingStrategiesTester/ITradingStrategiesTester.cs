@@ -11,9 +11,9 @@ namespace TradingBot.TradingStrategiesTester
 
         IEnumerable<ISimulationTrader> Traders { get; }
 
-        IDictionary<StockTicker, IChart> TickersQuotes { get; }
+        IDictionary<Instrument, IChart> InstrumentQuotes { get; }
 
-        ITickerQuotesDataProvider TickerQuotesDataProvider { get; }
+        IInstrumentQuotesDataProvider InstrumentQuotesDataProvider { get; }
 
         void Start();
 

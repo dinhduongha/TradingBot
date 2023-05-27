@@ -7,10 +7,12 @@ namespace TradingBot.CryptoExchanges.ByBit
 {
     public class ByBitConverter : IByBitConverter
     {
+        public ITickerConverter Ticker => new ByBitTickerConverter();
+
         public IQuoteConverter<BybitKline> Quote => new ByBitQuoteConverter();
 
-        public ITickerConverter<BybitSpotSymbol> Ticker => new ByBitTickerConverter();
-
         public IIntervalConverter<KlineInterval> Interval => new ByBitIntervalConverter();
+
+        public IInstrumentConverter<BybitSpotSymbol> Instrument => new ByBitInstrumentConverter();
     }
 }

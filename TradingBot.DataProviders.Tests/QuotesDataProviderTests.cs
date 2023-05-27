@@ -20,10 +20,11 @@ namespace TradingBot.DataProviders.Tests
         {
             var result = new List<IQuote>();
 
+            var symbol = new Symbol("ETH", InstrumentType.Spot, new Currency("USDT"));
             var provider = new QuotesDataProvider(DateTime.UtcNow.AddDays(-3), DateTime.UtcNow,
                 Interval.FiveMinutes, _adapter);
 
-            await foreach (var quote in provider.Provide("ETHUSDT"))
+            await foreach (var quote in provider.Provide(symbol))
             {
                 result.Add(quote);
             }

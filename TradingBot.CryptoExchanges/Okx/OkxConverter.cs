@@ -8,10 +8,12 @@ namespace TradingBot.CryptoExchanges.Okx
 {
     public class OkxConverter : IOkxConverter
     {
+        public ITickerConverter Ticker => new OkxTickerConverter();
+
         public IQuoteConverter<OkexCandlestick> Quote => new OkxQuoteConverter();
 
-        public ITickerConverter<OkexInstrument> Ticker => new OkxTickerConverter();
-
         public IIntervalConverter<OkexPeriod> Interval => new OkxIntervalConverter();
+
+        public IInstrumentConverter<OkexInstrument> Instrument => new OkxInstrumentConverter();
     }
 }

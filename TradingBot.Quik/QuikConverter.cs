@@ -6,12 +6,14 @@ namespace TradingBot.Quik
 {
     public class QuikConverter : IQuikConverter
     {
-        public IQuoteConverter<Candle> Quote => new QuikQuoteConverter();
+        public ITickerConverter Ticker => new QuikTickerConverter();
 
-        public ITickerConverter<SecurityInfo> Ticker => new QuikTickerConverter();
+        public IQuoteConverter<Candle> Quote => new QuikQuoteConverter();
 
         public IDateTimeConverter<QuikDateTime> DateTime => new QuikDateTimeConverter();
 
         public IIntervalConverter<CandleInterval> Interval => new QuikIntervalConverter();
+
+        public IInstrumentConverter<SecurityInfo> Instrument => new QuikInstrumentConverter();
     }
 }

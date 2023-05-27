@@ -13,9 +13,11 @@ namespace TradingBot.TradeAdapters.Tests
         }
 
         [Fact]
-        public async Task GetTicker_WithParam_ReturnNotNullResult()
+        public async Task GetInstrument_WithParam_ReturnNotNullResult()
         {
-            var result = await _adapter.GetTicker("GAZP");
+            var symbol = new Symbol("GAZP", InstrumentType.Stock, new Currency("SUR"));
+
+            var result = await _adapter.GetInstrument(symbol);
 
             Assert.NotNull(result);
         }
@@ -23,15 +25,17 @@ namespace TradingBot.TradeAdapters.Tests
         [Fact]
         public async Task GetTicker_WithInvalidParam_ThrowException()
         {
-            var action = async () => await _adapter.GetTicker("AAAA");
+            var symbol = new Symbol("AAA", InstrumentType.Stock, new Currency("SUR"));
 
-           await Assert.ThrowsAsync<NotSupportedException>(action);
+            var action = async () => await _adapter.GetInstrument(symbol);
+
+            await Assert.ThrowsAsync<NotSupportedException>(action);
         }
 
         [Fact]
-        public async Task GetTickers_ReturnNotNullAndNotEmptyResult()
+        public async Task GetInstruments_ReturnNotNullAndNotEmptyResult()
         {
-            var result = await _adapter.GetTickers();
+            var result = await _adapter.GetInstruments();
 
             Assert.NotNull(result);
             Assert.NotEmpty(result);
@@ -40,7 +44,9 @@ namespace TradingBot.TradeAdapters.Tests
         [Fact]
         public async Task GetHistoricalQuotes_WithParams_ReturnNotNullAndNotEmptyResult()
         {
-            var result = await _adapter.GetHistoricalQuotes("GAZP", Interval.OneDay,
+            var symbol = new Symbol("GAZP", InstrumentType.Stock, new Currency("SUR"));
+
+            var result = await _adapter.GetHistoricalQuotes(symbol, Interval.OneDay,
                 DateTime.UtcNow.AddMonths(-2), DateTime.UtcNow);
 
             Assert.NotNull(result);

@@ -4,9 +4,9 @@ namespace TradingBot.TechnicalAnalyze
 {
     public class TradingIdea : ITradingIdea
     {
-        public StockTicker Ticker { get; }
+        public Instrument Ticker { get; }
 
-        public TradingIdea(StockTicker ticker)
+        public TradingIdea(Instrument ticker)
         {
             Ticker = ticker;
         }

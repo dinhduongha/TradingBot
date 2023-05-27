@@ -4,7 +4,7 @@
     {
         private decimal _price;
 
-        private readonly StockTicker _info;
+        private readonly Instrument _info;
         private readonly Dictionary<decimal, decimal> _lots;
 
         public decimal Price => _price;
@@ -15,11 +15,11 @@
 
         public decimal AveragePrice => _lots.Sum(lot => lot.Key * lot.Value) / Lots.Values.Sum();
 
-        public StockTicker Info => _info;
+        public Instrument Info => _info;
 
         public Dictionary<decimal, decimal> Lots => _lots;
 
-        public Asset(StockTicker ticker)
+        public Asset(Instrument ticker)
         {
             if (ticker == null) throw new ArgumentNullException(nameof(ticker));
 

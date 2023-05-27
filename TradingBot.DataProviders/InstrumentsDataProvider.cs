@@ -3,18 +3,18 @@ using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders
 {
-    public class TickersDataProvider : ITickersDataProvider
+    public class InstrumentsDataProvider : IInstrumentsDataProvider
     {
         private readonly ITradeAdapter _adapter;
 
-        public TickersDataProvider(ITradeAdapter adapter)
+        public InstrumentsDataProvider(ITradeAdapter adapter)
         {
             _adapter = adapter;
         }
 
-        public async IAsyncEnumerable<StockTicker> Provide()
+        public async IAsyncEnumerable<Instrument> Provide()
         {
-            var tickers = await _adapter.GetTickers();
+            var tickers = await _adapter.GetInstruments();
 
             foreach (var ticker in tickers)
             {

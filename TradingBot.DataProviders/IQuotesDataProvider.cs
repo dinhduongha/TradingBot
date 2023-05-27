@@ -5,6 +5,6 @@ namespace TradingBot.DataProviders
 {
     public interface IQuotesDataProvider
     {
-        IAsyncEnumerable<IQuote> Provide(string code);
+        IAsyncEnumerable<IQuote> Provide(Symbol symbol);
     }
 }

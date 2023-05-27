@@ -10,12 +10,12 @@ namespace TradingBot.TradingStrategiesTester.Tests
     public class TradingStrategiesTesterTests
     {
         private readonly ITradeAdapter _adapter;
-        private readonly ITickersDataProvider _tickersDataProvider;
+        private readonly IInstrumentsDataProvider _instrumentsDataProvider;
 
         public TradingStrategiesTesterTests(BybitClient httpClient, ByBitConverter converter) 
         {
             _adapter = new ByBitTradeAdapter(httpClient, converter);
-            _tickersDataProvider = new TickersDataProvider(_adapter);
+            _instrumentsDataProvider = new InstrumentsDataProvider(_adapter);
         }
 
         [Fact]
@@ -32,9 +32,9 @@ namespace TradingBot.TradingStrategiesTester.Tests
             var quotesDataProvider = new QuotesDataProvider(DateTime.UtcNow.AddYears(-2), DateTime.UtcNow, 
                 Interval.OneDay, _adapter);
 
-            var tickersQuotesDataProvider = new TickerQuotesDataProvider(quotesDataProvider, _tickersDataProvider);
+            var instrumentsQuotesDataProvider = new InstrumentQuotesDataProvider(quotesDataProvider, _instrumentsDataProvider);
 
-            var tester = new TradingStrategiesTester(traders, tickersQuotesDataProvider);
+            var tester = new TradingStrategiesTester(traders, instrumentsQuotesDataProvider);
 
             tester.Start();
 
@@ -43,8 +43,8 @@ namespace TradingBot.TradingStrategiesTester.Tests
                 await Task.Delay(100);
             }
 
-            Assert.NotNull(tester.TickersQuotes);
-            Assert.NotEmpty(tester.TickersQuotes);
+            Assert.NotNull(tester.InstrumentQuotes);
+            Assert.NotEmpty(tester.InstrumentQuotes);
         }
     }
 }

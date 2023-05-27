@@ -5,19 +5,19 @@ using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders.Tests
 {
-    public class TickersDataProviderTests
+    public class InstrumentsDataProviderTests
     {
-        private readonly ITickersDataProvider _provider;
+        private readonly IInstrumentsDataProvider _provider;
 
-        public TickersDataProviderTests(BybitClient httpClient, ByBitConverter converter)
+        public InstrumentsDataProviderTests(BybitClient httpClient, ByBitConverter converter)
         {
-            _provider = new TickersDataProvider(new ByBitTradeAdapter(httpClient, converter));
+            _provider = new InstrumentsDataProvider(new ByBitTradeAdapter(httpClient, converter));
         }
 
         [Fact]
         public async Task Provide_ReturnNotNullAndNotEmptyResult()
         {
-            var tickers = new List<StockTicker>();
+            var tickers = new List<Instrument>();
 
             await foreach (var ticker in _provider.Provide())
             {

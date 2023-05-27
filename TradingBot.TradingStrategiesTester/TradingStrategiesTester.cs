@@ -13,20 +13,20 @@ namespace TradingBot.TradingStrategiesTester
 
         public IEnumerable<ISimulationTrader> Traders { get; }
 
-        public IDictionary<StockTicker, IChart> TickersQuotes { get; }
+        public IDictionary<Instrument, IChart> InstrumentQuotes { get; }
 
-        public ITickerQuotesDataProvider TickerQuotesDataProvider { get; }
+        public IInstrumentQuotesDataProvider InstrumentQuotesDataProvider { get; }
 
         public TradingStrategiesTester(IEnumerable<ISimulationTrader> traders, 
-            ITickerQuotesDataProvider tickerQuotesDataProvider)
+            IInstrumentQuotesDataProvider instrumentQuotesDataProvider)
         {
             if (traders == null || traders.Count() == 0) throw new ArgumentNullException(nameof(traders));
 
             _isRunning = false;
 
             Traders = traders;
-            TickersQuotes = new Dictionary<StockTicker, IChart>();
-            TickerQuotesDataProvider = tickerQuotesDataProvider;
+            InstrumentQuotes = new Dictionary<Instrument, IChart>();
+            InstrumentQuotesDataProvider = instrumentQuotesDataProvider;
 
             Task.Run(async () =>
             {
@@ -60,9 +60,9 @@ namespace TradingBot.TradingStrategiesTester
 
         public async Task TestAsync()
         {
-            await foreach (var tickerQuote in ProvideTickerQuoteAsync())
+            await foreach (var instrumentQuote in ProvideInstrumentQuoteAsync())
             {
-                MapTickerQuote(tickerQuote);
+                MapInstrumentQuote(instrumentQuote);
 
                 ExecuteOrders();
 
@@ -70,18 +70,18 @@ namespace TradingBot.TradingStrategiesTester
             }
         }
 
-        private async IAsyncEnumerable<KeyValuePair<StockTicker, IQuote>> ProvideTickerQuoteAsync()
+        private async IAsyncEnumerable<KeyValuePair<Instrument, IQuote>> ProvideInstrumentQuoteAsync()
         {
-            await foreach (var tickerQuote in TickerQuotesDataProvider.Provide())
+            await foreach (var instrumentQuote in InstrumentQuotesDataProvider.Provide())
             {
-                yield return tickerQuote;
+                yield return instrumentQuote;
             }
         }
 
-        private void MapTickerQuote(KeyValuePair<StockTicker, IQuote> tickerQuote)
+        private void MapInstrumentQuote(KeyValuePair<Instrument, IQuote> instrumentQuote)
         {
-            if (TickersQuotes.ContainsKey(tickerQuote.Key)) TickersQuotes[tickerQuote.Key].Add(tickerQuote.Value);
-            else TickersQuotes.Add(tickerQuote.Key, new Chart(new List<IQuote>() { tickerQuote.Value }));
+            if (InstrumentQuotes.ContainsKey(instrumentQuote.Key)) InstrumentQuotes[instrumentQuote.Key].Add(instrumentQuote.Value);
+            else InstrumentQuotes.Add(instrumentQuote.Key, new Chart(new List<IQuote>() { instrumentQuote.Value }));
         }
 
         private void ExecuteOrders()

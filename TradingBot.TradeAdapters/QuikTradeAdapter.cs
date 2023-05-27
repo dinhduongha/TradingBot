@@ -1,4 +1,5 @@
-﻿using Skender.Stock.Indicators;
+﻿using QuikSharp.DataStructures;
+using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
 using TradingBot.Quik;
 
@@ -15,37 +16,34 @@ namespace TradingBot.TradeAdapters
             _converter = converter;
         }
 
-        public async Task<StockTicker> GetTicker(string code)
+        public async Task<Instrument> GetInstrument(Symbol symbol)
         {
-            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
+            var ticker = _converter.Ticker.Convert(symbol);
+            var instrument = await _quik.Class.GetSecurityInfo("TQBR", ticker);
 
-            var ticker = await _quik.Class.GetSecurityInfo("TQBR", code);
-
-            return ticker != null ? _converter.Ticker.Convert(ticker) : throw new NotSupportedException(code);
+            if (instrument != null) return _converter.Instrument.Convert(instrument);
+            else throw new NotSupportedException(ticker);
         }
 
-        public async Task<IEnumerable<StockTicker>> GetTickers()
+        public async Task<IEnumerable<Instrument>> GetInstruments()
         {
             var codes = await _quik.Class.GetClassSecurities("TQBR");
 
-            var tickers = new List<StockTicker>();
+            var tickers = new List<Instrument>();
 
             foreach (var code in codes)
             {
-                tickers.Add(await GetTicker(code));
+                tickers.Add(await GetInstrument(new Symbol(code, InstrumentType.Stock, new Currency("SUR"))));
             }
 
             return tickers;
         }
 
-        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, 
+        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(Symbol symbol, Interval interval, 
             DateTime from, DateTime to)
         {
-            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
-            if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
-            if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
-
-            var candles = await _quik.Candles.GetAllCandles("TQBR", code, _converter.Interval.Convert(interval));
+            var ticker = _converter.Ticker.Convert(symbol);
+            var candles = await _quik.Candles.GetAllCandles("TQBR", ticker, _converter.Interval.Convert(interval));
 
             return candles
                 .Where(candle => _converter.DateTime.Convert(candle.Datetime) >= from &&

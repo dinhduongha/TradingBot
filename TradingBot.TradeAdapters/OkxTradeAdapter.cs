@@ -18,32 +18,28 @@ namespace TradingBot.TradeAdapters
             _converter = converter;
         }
 
-        public async Task<StockTicker> GetTicker(string code)
+        public async Task<Instrument> GetInstrument(Symbol symbol)
         {
-            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
+            var ticker = _converter.Ticker.Convert(symbol);
+            var response = await _client.GetInstrumentsAsync(OkexInstrumentType.Spot, instrumentId: ticker);
+            var instrument = response?.Data?.SingleOrDefault();
 
-            var response = await _client.GetInstrumentsAsync(OkexInstrumentType.Spot, instrumentId: code);
-
-            var ticker = response?.Data?.SingleOrDefault();
-
-            return ticker != null ? _converter.Ticker.Convert(ticker) : throw new NotSupportedException(code);
+            if (instrument != null) return _converter.Instrument.Convert(instrument);
+            else throw new NotSupportedException(ticker);
         }
 
-        public async Task<IEnumerable<StockTicker>> GetTickers()
+        public async Task<IEnumerable<Instrument>> GetInstruments()
         {
             var response = await _client.GetInstrumentsAsync(OkexInstrumentType.Spot);
 
-            return response?.Data?.Select(_converter.Ticker.Convert) ?? Enumerable.Empty<StockTicker>();
+            return response?.Data?.Select(_converter.Instrument.Convert) ?? Enumerable.Empty<Instrument>();
         }
 
-        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(string code, Interval interval, 
+        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(Symbol symbol, Interval interval, 
             DateTime from, DateTime to)
         {
-            if (string.IsNullOrEmpty(code)) throw new ArgumentNullException(nameof(code));
-            if (from > to) throw new ArgumentOutOfRangeException(nameof(from));
-            if (to < from) throw new ArgumentOutOfRangeException(nameof(to));
-
-            var response = await _client.GetCandlesticksHistoryAsync(code, _converter.Interval.Convert(interval), 
+            var ticker = _converter.Ticker.Convert(symbol);
+            var response = await _client.GetCandlesticksHistoryAsync(ticker, _converter.Interval.Convert(interval), 
                 to.ToUnixTimeMilliSeconds(), from.ToUnixTimeMilliSeconds());
 
             return response?.Data?.Select(_converter.Quote.Convert) ?? Enumerable.Empty<Quote>();

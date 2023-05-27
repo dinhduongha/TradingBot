@@ -8,10 +8,12 @@ namespace TradingBot.CryptoExchanges.Binance
 {
     public partial class BinanceConverter : IBinanceConverter
     {
+        public ITickerConverter Ticker => new BinanceTickerConverter();
+
         public IQuoteConverter<IBinanceKline> Quote => new BinanceQuoteConverter();
 
-        public ITickerConverter<BinanceSymbol> Ticker => new BinanceTickerConverter();
-
         public IIntervalConverter<KlineInterval> Interval => new BinanceIntervalConverter();
+
+        public IInstrumentConverter<BinanceSymbol> Instrument => new BinanceInstrumentConverter();
     }
 }

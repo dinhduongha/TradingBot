@@ -6,9 +6,9 @@ namespace TradingBot.Core.Domain
     {
         [EnumMember(Value = "OKX")]
         Okx,
-        [EnumMember(Value = "ByBit")]
+        [EnumMember(Value = "BYBIT")]
         ByBit,
-        [EnumMember(Value = "Binance")]
+        [EnumMember(Value = "BINANCE")]
         Binance,
         [EnumMember(Value = "MOEX")]
         Moex,

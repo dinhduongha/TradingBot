@@ -8,10 +8,12 @@ namespace TradingBot.CryptoExchanges.Bitfinex
 {
     public partial class BitfinexConverter : IBitfinexConverter
     {
+        public ITickerConverter Ticker => new BitfinexTickerConverter();
+
         public IQuoteConverter<BitfinexKline> Quote => new BitfinexQuoteConverter();
 
-        public ITickerConverter<BitfinexSymbolDetails> Ticker => new BitfinexTickerConverter();
-
         public IIntervalConverter<KlineInterval> Interval => new BitfinexIntervalConverter();
+
+        public IInstrumentConverter<BitfinexSymbolDetails> Instrument => new BitfinexInstrumentConverter();
     }
 }

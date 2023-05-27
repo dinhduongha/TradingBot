@@ -7,6 +7,6 @@ namespace TradingBot.TechnicalAnalyze
     {
         string Name { get; }
 
-        ITradingIdea? SuggestIdea(StockTicker ticker, IEnumerable<ChartDataItem> chartDataItems);
+        ITradingIdea? SuggestIdea(Instrument ticker, IEnumerable<ChartDataItem> chartDataItems);
     }
 }

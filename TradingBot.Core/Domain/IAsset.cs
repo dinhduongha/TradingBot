@@ -10,7 +10,7 @@
 
         decimal AveragePrice { get; }
 
-        StockTicker Info { get; }
+        Instrument Info { get; }
 
         Dictionary<decimal, decimal> Lots { get; }
 
