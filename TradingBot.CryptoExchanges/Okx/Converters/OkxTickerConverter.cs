@@ -9,7 +9,7 @@ namespace TradingBot.CryptoExchanges.Okx.Converters
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
 
-            return $"{input.InstrumentCode}-{input.Currency.Name}";
+            return $"{input.InstrumentCode}-{input.Currency?.Name ?? ""}";
         }
     }
 }

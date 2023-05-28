@@ -17,7 +17,9 @@ namespace TradingBot.Quik.Converters
         {
             if (instrument == null) throw new ArgumentNullException(nameof(instrument));
 
-            return StockExchange.Moex;
+            if (instrument.ClassCode == "TQBR") return StockExchange.Moex;
+            else if (instrument.ClassCode == "SPBXM") return StockExchange.Spbex;
+            else return StockExchange.Undefined;
         }
 
         public override InstrumentType GetInstrumentType(SecurityInfo instrument)
@@ -31,7 +33,7 @@ namespace TradingBot.Quik.Converters
         {
             if (instrument == null) throw new ArgumentNullException(nameof(instrument));
 
-            return new Symbol(instrument.ClassCode, InstrumentType.Stock, new Currency(instrument.FaceUnit));
+            return new Symbol(instrument.SecCode, InstrumentType.Stock, new Currency(instrument.FaceUnit));
         }
 
         public override LotFilter? GetLotFilter(SecurityInfo instrument)

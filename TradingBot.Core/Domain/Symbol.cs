@@ -6,12 +6,11 @@
 
         public InstrumentType InstrumentType { get; }
 
-        public Currency Currency { get; }
+        public Currency? Currency { get; }
 
-        public Symbol(string instrumentCode, InstrumentType instrumentType, Currency currency)
+        public Symbol(string instrumentCode, InstrumentType instrumentType, Currency? currency = null)
         {
             if (string.IsNullOrEmpty(instrumentCode)) throw new ArgumentNullException(nameof(instrumentCode));
-            if (currency == null) throw new ArgumentNullException(nameof(currency));
 
             InstrumentCode = instrumentCode;
             InstrumentType = instrumentType;
