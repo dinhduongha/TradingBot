@@ -1,5 +1,7 @@
 ﻿using Binance.Net.Clients;
+using Binance.Net.Objects;
 using Skender.Stock.Indicators;
+using System.Net.NetworkInformation;
 using TradingBot.Core.Domain;
 using TradingBot.CryptoExchanges.Binance;
 
@@ -19,6 +21,7 @@ namespace TradingBot.TradeAdapters
         public async Task<Instrument> GetInstrument(Symbol symbol)
         {
             var ticker = _converter.Ticker.Convert(symbol);
+
             var response = await _client.SpotApi.ExchangeData.GetExchangeInfoAsync(ticker);
             var instrument = response?.Data?.Symbols?.SingleOrDefault();
 
@@ -37,11 +40,69 @@ namespace TradingBot.TradeAdapters
             DateTime from, DateTime to)
         {
             var ticker = _converter.Ticker.Convert(symbol);
+
             var response = await _client.SpotApi.ExchangeData.GetKlinesAsync(ticker, 
                 _converter.Interval.Convert(interval), from, to);
             var quotes = response?.Data;
 
             return quotes?.Select(_converter.Quote.Convert) ?? Enumerable.Empty<Quote>();
+        }
+
+        public async Task<long> GetPingAsync()
+        {
+            var uri = new Uri(BinanceClientOptions.Default.SpotApiOptions.BaseAddress);
+
+            var pingClient = new Ping();
+            var pingResult = await pingClient.SendPingAsync(uri.Host);
+
+            return pingResult.RoundtripTime;
+        }
+
+        public async Task SubscribeToPingChangedAsync(Action<long> onPingChangedHandler, 
+            CancellationToken token = default)
+        {
+            var task = new Task(async () =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    var ping = await GetPingAsync();
+
+                    onPingChangedHandler?.Invoke(ping);
+
+                    await Task.Delay(1000);
+                }
+            }, token);
+
+            task.Start();
+
+            await Task.CompletedTask;
+        }
+
+        public async Task<DateTime> GetServerTimeAsync()
+        {
+            var callResult = await _client.SpotApi.ExchangeData.GetServerTimeAsync();
+
+            return callResult.Data.ToUniversalTime();
+        }
+
+        public async Task SubscribeToServerTimeChangedAsync(Action<DateTime> onServerTimeChangedHandler, 
+            CancellationToken token = default)
+        {
+            var task = new Task(async () =>
+            {
+                while (!token.IsCancellationRequested) 
+                {
+                    var time = await GetServerTimeAsync();
+
+                    onServerTimeChangedHandler?.Invoke(time);
+
+                    await Task.Delay(1000);
+                }
+            }, token);
+
+            task.Start();
+
+            await Task.CompletedTask;
         }
     }
 }

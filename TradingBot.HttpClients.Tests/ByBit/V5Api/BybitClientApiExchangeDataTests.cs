@@ -68,5 +68,15 @@ namespace TradingBot.HttpClients.Tests.ByBit.V5Api
             Assert.NotNull(response.Data.List);
             Assert.NotEmpty(response.Data.List);
         }
+
+        [Fact]
+        public async Task GetServerTimeAsync_WithParams_ReturnNotNullResult()
+        {
+            var response = await _client.V5Api.ExchangeData.GetServerTimeAsync();
+
+            Assert.NotNull(response);
+
+            Assert.NotNull(response.Data);
+        }
     }
 }
