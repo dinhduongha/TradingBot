@@ -14,40 +14,40 @@ namespace TradingBot.TradeAdapters.Tests
         }
 
         [Fact]
-        public async Task GetInstrument_WithParam_ReturnNotNullResult()
+        public async Task GetInstrumentAsync_WithParam_ReturnNotNullResult()
         {
             var symbol = new Symbol("ETH", InstrumentType.Spot, new Currency("USDT"));
 
-            var result = await _adapter.GetInstrument(symbol);
+            var result = await _adapter.GetInstrumentAsync(symbol);
 
             Assert.NotNull(result);
         }
 
         [Fact]
-        public async Task GetInstrument_WithInvalidParam_ThrowException()
+        public async Task GetInstrumentAsync_WithInvalidParam_ThrowException()
         {
             var symbol = new Symbol("AAA", InstrumentType.Spot, new Currency("USDT"));
 
-            var action = async () => await _adapter.GetInstrument(symbol);
+            var action = async () => await _adapter.GetInstrumentAsync(symbol);
 
             await Assert.ThrowsAsync<NotSupportedException>(action);
         }
 
         [Fact]
-        public async Task GetInstruments_ReturnNotNullAndNotEmptyResult()
+        public async Task GetInstrumentsAsync_ReturnNotNullAndNotEmptyResult()
         {
-            var result = await _adapter.GetInstruments();
+            var result = await _adapter.GetInstrumentsAsync();
 
             Assert.NotNull(result);
             Assert.NotEmpty(result);
         }
 
         [Fact]
-        public async Task GetHistoricalQuotes_WithParams_ReturnNotNullAndNotEmptyResult()
+        public async Task GetHistoricalQuotesAsync_WithParams_ReturnNotNullAndNotEmptyResult()
         {
             var symbol = new Symbol("ETH", InstrumentType.Spot, new Currency("USDT"));
 
-            var result = await _adapter.GetHistoricalQuotes(symbol, Interval.OneDay,
+            var result = await _adapter.GetHistoricalQuotesAsync(symbol, Interval.OneDay,
                 DateTime.UtcNow.AddMonths(-2), DateTime.UtcNow);
 
             Assert.NotNull(result);

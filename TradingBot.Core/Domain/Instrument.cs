@@ -12,7 +12,7 @@
 
         public Symbol Symbol { get; }
 
-        public Currency Currency { get; }
+        public Currency? Currency { get; }
 
         public LotFilter? LotFilter { get; }
 

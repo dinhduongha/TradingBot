@@ -14,7 +14,7 @@ namespace TradingBot.DataProviders
 
         public async IAsyncEnumerable<Instrument> Provide()
         {
-            var tickers = await _adapter.GetInstruments();
+            var tickers = await _adapter.GetInstrumentsAsync();
 
             foreach (var ticker in tickers)
             {

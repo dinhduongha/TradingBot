@@ -32,7 +32,7 @@ namespace TradingBot.DataProviders
 
             while (to >= _from)
             {
-                var quotes = await _adapter.GetHistoricalQuotes(symbol, _interval, _from, to);
+                var quotes = await _adapter.GetHistoricalQuotesAsync(symbol, _interval, _from, to);
 
                 if (quotes != null && quotes.Count() > 0)
                 {

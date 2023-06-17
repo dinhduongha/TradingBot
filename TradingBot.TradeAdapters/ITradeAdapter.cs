@@ -5,11 +5,11 @@ namespace TradingBot.TradeAdapters
 {
     public interface ITradeAdapter
     {
-        Task<Instrument> GetInstrument(Symbol symbol);
+        Task<Instrument> GetInstrumentAsync(Symbol symbol);
 
-        Task<IEnumerable<Instrument>> GetInstruments();
+        Task<IEnumerable<Instrument>> GetInstrumentsAsync();
 
-        Task<IEnumerable<IQuote>> GetHistoricalQuotes(Symbol symbol, Interval interval, 
+        Task<IEnumerable<IQuote>> GetHistoricalQuotesAsync(Symbol symbol, Interval interval, 
             DateTime from, DateTime to);
 
         Task<long> GetPingAsync();

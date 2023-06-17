@@ -19,7 +19,7 @@ namespace TradingBot.TradeAdapters
             _converter = converter;
         }
 
-        public async Task<Instrument> GetInstrument(Symbol symbol)
+        public async Task<Instrument> GetInstrumentAsync(Symbol symbol)
         {
             var ticker = _converter.Ticker.Convert(symbol);
 
@@ -30,7 +30,7 @@ namespace TradingBot.TradeAdapters
             else throw new NotSupportedException(ticker);
         }
 
-        public async Task<IEnumerable<Instrument>> GetInstruments()
+        public async Task<IEnumerable<Instrument>> GetInstrumentsAsync()
         {
             var codes = await _quik.Class.GetClassSecurities(string.Join(",", _supportedClasses));
 
@@ -38,13 +38,13 @@ namespace TradingBot.TradeAdapters
 
             foreach (var code in codes)
             {
-                tickers.Add(await GetInstrument(new Symbol(code, InstrumentType.Stock)));
+                tickers.Add(await GetInstrumentAsync(new Symbol(code, InstrumentType.Stock)));
             }
 
             return tickers;
         }
 
-        public async Task<IEnumerable<IQuote>> GetHistoricalQuotes(Symbol symbol, Interval interval, 
+        public async Task<IEnumerable<IQuote>> GetHistoricalQuotesAsync(Symbol symbol, Interval interval, 
             DateTime from, DateTime to)
         {
             var ticker = _converter.Ticker.Convert(symbol);
