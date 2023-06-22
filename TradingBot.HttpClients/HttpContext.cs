@@ -1,5 +1,4 @@
 ﻿using Binance.Net.Clients;
-using Bitfinex.Net.Clients;
 using Bybit.Net.Clients;
 using Okex.Net;
 
@@ -13,14 +12,11 @@ namespace TradingBot.HttpClients
 
         public BinanceClient Binance { get; }
 
-        public BitfinexClient Bitfinex { get; }
-
-        public HttpContext(OkexClient okex, BybitClient byBit, BinanceClient binance, BitfinexClient bitfinex)
+        public HttpContext(OkexClient okex, BybitClient byBit, BinanceClient binance)
         {
             Okex = okex;
             ByBit = byBit;
             Binance = binance;
-            Bitfinex = bitfinex;
         }
     }
 }
