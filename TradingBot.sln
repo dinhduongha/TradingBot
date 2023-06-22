@@ -39,15 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.Api", "TradingBo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.AuthApi", "TradingBot.AuthApi\TradingBot.AuthApi.csproj", "{25B702DD-185D-484A-8B56-7D8D45EB6AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.BitMax", "TradingBot.BitMax\TradingBot.BitMax.csproj", "{41C4B196-B36E-4D62-B318-35D9754FD759}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Transaq", "TradingBot.Transaq\TradingBot.Transaq.csproj", "{C5593642-1775-4D44-9E52-288E942F8A53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.BitMax.Tests", "TradingBot.BitMax.Tests\TradingBot.BitMax.Tests.csproj", "{607B8482-3445-42BA-A38D-ECAB1F3CE1C2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Transaq.Tests", "TradingBot.Transaq.Tests\TradingBot.Transaq.Tests.csproj", "{4F86B46F-408B-4A04-AAB1-DA2C73970118}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.CryptoExchanges", "TradingBot.CryptoExchanges\TradingBot.CryptoExchanges.csproj", "{AF74E7AD-215A-4D31-9401-162E418B3383}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradingBot.CryptoExchanges", "TradingBot.CryptoExchanges\TradingBot.CryptoExchanges.csproj", "{AF74E7AD-215A-4D31-9401-162E418B3383}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,22 +119,6 @@ Global
 		{25B702DD-185D-484A-8B56-7D8D45EB6AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25B702DD-185D-484A-8B56-7D8D45EB6AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25B702DD-185D-484A-8B56-7D8D45EB6AC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41C4B196-B36E-4D62-B318-35D9754FD759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41C4B196-B36E-4D62-B318-35D9754FD759}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41C4B196-B36E-4D62-B318-35D9754FD759}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41C4B196-B36E-4D62-B318-35D9754FD759}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5593642-1775-4D44-9E52-288E942F8A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5593642-1775-4D44-9E52-288E942F8A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5593642-1775-4D44-9E52-288E942F8A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5593642-1775-4D44-9E52-288E942F8A53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{607B8482-3445-42BA-A38D-ECAB1F3CE1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{607B8482-3445-42BA-A38D-ECAB1F3CE1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{607B8482-3445-42BA-A38D-ECAB1F3CE1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{607B8482-3445-42BA-A38D-ECAB1F3CE1C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F86B46F-408B-4A04-AAB1-DA2C73970118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F86B46F-408B-4A04-AAB1-DA2C73970118}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F86B46F-408B-4A04-AAB1-DA2C73970118}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F86B46F-408B-4A04-AAB1-DA2C73970118}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF74E7AD-215A-4D31-9401-162E418B3383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF74E7AD-215A-4D31-9401-162E418B3383}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF74E7AD-215A-4D31-9401-162E418B3383}.Release|Any CPU.ActiveCfg = Release|Any CPU

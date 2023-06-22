@@ -7,28 +7,54 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BitMax\**" />
+    <Compile Remove="Bitmex\**" />
+    <Compile Remove="Bittrex\**" />
+    <Compile Remove="BtcTurk\**" />
+    <Compile Remove="CoinEx\**" />
+    <Compile Remove="Exante\**" />
+    <Compile Remove="HitBTC\**" />
+    <Compile Remove="Huobi\**" />
+    <Compile Remove="Kraken\**" />
+    <Compile Remove="Kucoin\**" />
+    <Compile Remove="LiquidQuoine\**" />
+    <Compile Remove="LiveCoin\**" />
+    <Compile Remove="Paribu\**" />
+    <EmbeddedResource Remove="BitMax\**" />
+    <EmbeddedResource Remove="Bitmex\**" />
+    <EmbeddedResource Remove="Bittrex\**" />
+    <EmbeddedResource Remove="BtcTurk\**" />
+    <EmbeddedResource Remove="CoinEx\**" />
+    <EmbeddedResource Remove="Exante\**" />
+    <EmbeddedResource Remove="HitBTC\**" />
+    <EmbeddedResource Remove="Huobi\**" />
+    <EmbeddedResource Remove="Kraken\**" />
+    <EmbeddedResource Remove="Kucoin\**" />
+    <EmbeddedResource Remove="LiquidQuoine\**" />
+    <EmbeddedResource Remove="LiveCoin\**" />
+    <EmbeddedResource Remove="Paribu\**" />
+    <None Remove="BitMax\**" />
+    <None Remove="Bitmex\**" />
+    <None Remove="Bittrex\**" />
+    <None Remove="BtcTurk\**" />
+    <None Remove="CoinEx\**" />
+    <None Remove="Exante\**" />
+    <None Remove="HitBTC\**" />
+    <None Remove="Huobi\**" />
+    <None Remove="Kraken\**" />
+    <None Remove="Kucoin\**" />
+    <None Remove="LiquidQuoine\**" />
+    <None Remove="LiveCoin\**" />
+    <None Remove="Paribu\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TradingBot.CryptoExchanges\TradingBot.CryptoExchanges.csproj" />
     <ProjectReference Include="..\TradingBot.HttpClients.Core\TradingBot.HttpClients.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="BitMax\" />
-    <Folder Include="Bitmex\" />
-    <Folder Include="Bittrex\" />
-    <Folder Include="BtcTurk\" />
-    <Folder Include="CoinEx\" />
-    <Folder Include="Exante\" />
-    <Folder Include="HitBTC\" />
-    <Folder Include="Huobi\" />
-    <Folder Include="Kraken\" />
-    <Folder Include="Kucoin\" />
-    <Folder Include="LiquidQuoine\" />
-    <Folder Include="LiveCoin\" />
-    <Folder Include="Paribu\" />
   </ItemGroup>
 
 </Project>

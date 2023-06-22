@@ -9,17 +9,14 @@ namespace TradingBot.TradeAdapters
 
         Task<IEnumerable<Instrument>> GetInstrumentsAsync();
 
-        Task<IEnumerable<IQuote>> GetHistoricalQuotesAsync(Symbol symbol, Interval interval, 
-            DateTime from, DateTime to);
+        Task<IEnumerable<IQuote>> GetHistoricalQuotesAsync(Symbol symbol, Interval interval, DateTime from, DateTime to);
 
         Task<long> GetPingAsync();
 
-        Task SubscribeToPingChangedAsync(Action<long> onPingChangedHandler, 
-            CancellationToken token = default);
+        Task SubscribeToPingChangedAsync(Action<long> onPingChangedHandler, CancellationToken token = default);
 
         Task<DateTime> GetServerTimeAsync();
 
-        Task SubscribeToServerTimeChangedAsync(Action<DateTime> onServerTimeChangedHandler, 
-            CancellationToken token = default);
+        Task SubscribeToServerTimeChangedAsync(Action<DateTime> onServerTimeChangedHandler, CancellationToken token = default);
     }
 }

@@ -5,44 +5,56 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BitMax\**" />
+    <Compile Remove="Bitmex\**" />
+    <Compile Remove="Bittrex\**" />
+    <Compile Remove="BtcTurk\**" />
+    <Compile Remove="CoinEx\**" />
+    <Compile Remove="Exante\**" />
+    <Compile Remove="HitBTC\**" />
+    <Compile Remove="Huobi\**" />
+    <Compile Remove="Kraken\**" />
+    <Compile Remove="Kucoin\**" />
+    <Compile Remove="LiquidQuoine\**" />
+    <Compile Remove="LiveCoin\**" />
+    <Compile Remove="Paribu\**" />
+    <EmbeddedResource Remove="BitMax\**" />
+    <EmbeddedResource Remove="Bitmex\**" />
+    <EmbeddedResource Remove="Bittrex\**" />
+    <EmbeddedResource Remove="BtcTurk\**" />
+    <EmbeddedResource Remove="CoinEx\**" />
+    <EmbeddedResource Remove="Exante\**" />
+    <EmbeddedResource Remove="HitBTC\**" />
+    <EmbeddedResource Remove="Huobi\**" />
+    <EmbeddedResource Remove="Kraken\**" />
+    <EmbeddedResource Remove="Kucoin\**" />
+    <EmbeddedResource Remove="LiquidQuoine\**" />
+    <EmbeddedResource Remove="LiveCoin\**" />
+    <EmbeddedResource Remove="Paribu\**" />
+    <None Remove="BitMax\**" />
+    <None Remove="Bitmex\**" />
+    <None Remove="Bittrex\**" />
+    <None Remove="BtcTurk\**" />
+    <None Remove="CoinEx\**" />
+    <None Remove="Exante\**" />
+    <None Remove="HitBTC\**" />
+    <None Remove="Huobi\**" />
+    <None Remove="Kraken\**" />
+    <None Remove="Kucoin\**" />
+    <None Remove="LiquidQuoine\**" />
+    <None Remove="LiveCoin\**" />
+    <None Remove="Paribu\**" />
+  </ItemGroup>
 	
   <ItemGroup>
     <PackageReference Include="Binance.Net" Version="8.5.1" />
-    <PackageReference Include="Bitfinex.Net" Version="5.2.0" />
-    <PackageReference Include="Bitmex.Net.Client" Version="2.0.2" />
-    <PackageReference Include="Bittrex.Net" Version="7.1.2" />
-    <PackageReference Include="BtcTurk.Api" Version="1.0.4" />
     <PackageReference Include="Bybit.Net" Version="2.0.0" />
-    <PackageReference Include="CoinEx.Net" Version="5.1.2" />
-    <PackageReference Include="Exante.Net" Version="1.1.0" />
-    <PackageReference Include="HitBTC_Net" Version="1.0.6.2" />
-    <PackageReference Include="Huobi.Net" Version="4.2.4" />
-    <PackageReference Include="KrakenExchange.Net" Version="3.1.9" />
-    <PackageReference Include="Kucoin.Net" Version="4.3.3" />
-    <PackageReference Include="LiquidQuoine.Net" Version="0.4.0" />
-    <PackageReference Include="LiveCoin.Net" Version="1.0.9" />
     <PackageReference Include="OKEx.Net" Version="5.3.3" />
-    <PackageReference Include="Paribu.Api" Version="1.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="BitMax\" />
-    <Folder Include="Bitmex\" />
-    <Folder Include="Bittrex\" />
-    <Folder Include="BtcTurk\" />
-    <Folder Include="CoinEx\" />
-    <Folder Include="Exante\" />
-    <Folder Include="HitBTC\" />
-    <Folder Include="Huobi\" />
-    <Folder Include="Kraken\" />
-    <Folder Include="Kucoin\" />
-    <Folder Include="LiquidQuoine\" />
-    <Folder Include="LiveCoin\" />
-    <Folder Include="Paribu\" />
   </ItemGroup>
 	
   <ItemGroup>
-    <ProjectReference Include="..\TradingBot.BitMax\TradingBot.BitMax.csproj" />
     <ProjectReference Include="..\TradingBot.Core\TradingBot.Core.csproj" />
   </ItemGroup>
 
