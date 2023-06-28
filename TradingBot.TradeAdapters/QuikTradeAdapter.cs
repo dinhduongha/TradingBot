@@ -111,5 +111,60 @@ namespace TradingBot.TradeAdapters
 
             await Task.CompletedTask;
         }
+
+        public async Task<OrderBook> GetOrderBookAsync(Symbol symbol)
+        {
+            if (symbol == null) throw new ArgumentNullException(nameof(symbol));
+
+            var ticker = _converter.Ticker.Convert(symbol);
+
+            var classCode = await _quik.Class.GetSecurityClass(string.Join(",", _supportedClasses), ticker);
+            var orderBook = await _quik.OrderBook.GetQuoteLevel2(classCode, ticker);
+
+            return _converter.OrderBook.Convert(orderBook);
+        }
+
+        public async Task SubscribeToOrderBookChangedAsync(Symbol symbol, Action<Symbol, OrderBook> onOrderBookChangedHandler, 
+            CancellationToken token = default)
+        {
+            if (symbol == null) throw new ArgumentNullException(nameof(symbol));
+
+            var onQuoteHandler = new QuoteHandler(orderBook =>
+            {
+                onOrderBookChangedHandler.Invoke(symbol, _converter.OrderBook.Convert(orderBook));
+            });
+
+            var task = new Task(async () =>
+            {
+                _quik.Events.OnQuote += onQuoteHandler;
+
+                while (!token.IsCancellationRequested)
+                {
+                    await Task.Delay(1000);
+                }
+
+                _quik.Events.OnQuote -= onQuoteHandler;
+            }, token);
+
+            task.Start();
+
+            await Task.CompletedTask;
+        }
+
+        public async Task SubscribeToOrderBookChangedAsync(Action<Symbol, OrderBook> onOrderBookChangedHandler, 
+            CancellationToken token = default)
+        {
+            var task = new Task(async () =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    await Task.Delay(1000);
+                }
+            }, token);
+
+            task.Start();
+
+            await Task.CompletedTask;
+        }
     }
 }

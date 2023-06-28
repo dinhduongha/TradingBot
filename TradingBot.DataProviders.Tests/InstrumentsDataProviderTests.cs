@@ -1,6 +1,5 @@
-﻿using Bybit.Net.Clients;
-using TradingBot.Core.Domain;
-using TradingBot.CryptoExchanges.ByBit;
+﻿using TradingBot.Core.Domain;
+using TradingBot.Quik;
 using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders.Tests
@@ -9,9 +8,9 @@ namespace TradingBot.DataProviders.Tests
     {
         private readonly IInstrumentsDataProvider _provider;
 
-        public InstrumentsDataProviderTests(BybitClient httpClient, ByBitConverter converter)
+        public InstrumentsDataProviderTests(QuikSharp.Quik quik, QuikConverter converter)
         {
-            _provider = new InstrumentsDataProvider(new ByBitTradeAdapter(httpClient, converter));
+            _provider = new InstrumentsDataProvider(new QuikTradeAdapter(quik, converter));
         }
 
         [Fact]

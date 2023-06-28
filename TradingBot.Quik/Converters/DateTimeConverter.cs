@@ -3,7 +3,7 @@ using TradingBot.Core.Converters.Exchange;
 
 namespace TradingBot.Quik.Converters
 {
-    public class QuikDateTimeConverter : IDateTimeConverter<QuikDateTime>
+    public class DateTimeConverter : IDateTimeConverter<QuikDateTime>
     {
         public DateTime Convert(QuikDateTime input)
         {

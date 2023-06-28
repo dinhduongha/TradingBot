@@ -1,7 +1,6 @@
-﻿using Bybit.Net.Clients;
-using TradingBot.Core.Domain;
-using TradingBot.CryptoExchanges.ByBit;
+﻿using TradingBot.Core.Domain;
 using TradingBot.DataProviders;
+using TradingBot.Quik;
 using TradingBot.TechnicalAnalyze.Strategies;
 using TradingBot.TradeAdapters;
 
@@ -12,9 +11,9 @@ namespace TradingBot.TradingStrategiesTester.Tests
         private readonly ITradeAdapter _adapter;
         private readonly IInstrumentsDataProvider _instrumentsDataProvider;
 
-        public TradingStrategiesTesterTests(BybitClient httpClient, ByBitConverter converter) 
+        public TradingStrategiesTesterTests(QuikSharp.Quik quik, QuikConverter converter) 
         {
-            _adapter = new ByBitTradeAdapter(httpClient, converter);
+            _adapter = new QuikTradeAdapter(quik, converter);
             _instrumentsDataProvider = new InstrumentsDataProvider(_adapter);
         }
 
@@ -23,9 +22,9 @@ namespace TradingBot.TradingStrategiesTester.Tests
         {
             var strategy = new Lev4andTradingStrategy();
 
-            var poorTrader = new SimulationTrader(new Wallets() { { "USDT", new Wallet("USDT", 50) } }, strategy);
-            var middleTrader = new SimulationTrader(new Wallets() { { "USDT", new Wallet("USDT", 500) } }, strategy);
-            var richTrader = new SimulationTrader(new Wallets() { { "USDT", new Wallet("USDT", 5000) } }, strategy);
+            var poorTrader = new SimulationTrader(new Wallets() { { "SUR", new Wallet("SUR", 5000) } }, strategy);
+            var middleTrader = new SimulationTrader(new Wallets() { { "SUR", new Wallet("SUR", 50000) } }, strategy);
+            var richTrader = new SimulationTrader(new Wallets() { { "SUR", new Wallet("SUR", 500000) } }, strategy);
 
             var traders = new List<ISimulationTrader>() { poorTrader, middleTrader, richTrader };
 

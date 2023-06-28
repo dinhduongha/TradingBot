@@ -1,15 +1,15 @@
 ﻿using TradingBot.Core.Converters.Exchange;
 using TradingBot.Core.Domain;
 
-namespace TradingBot.CryptoExchanges.ByBit.Converters
+namespace TradingBot.Quik.Converters
 {
-    public class ByBitTickerConverter : ITickerConverter
+    public class TickerConverter : ITickerConverter
     {
         public string Convert(Symbol input)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
 
-            return $"{input.InstrumentCode}{input.Currency?.Name ?? ""}";
+            return $"{input.InstrumentCode}";
         }
     }
 }

@@ -3,7 +3,7 @@ using TradingBot.Core.Converters.Exchange;
 
 namespace TradingBot.Quik.Converters
 {
-    public class QuikIntervalConverter : BaseIntervalConverter<CandleInterval>
+    public class IntervalConverter : BaseIntervalConverter<CandleInterval>
     {
         public override CandleInterval OneDay => CandleInterval.D1;
 

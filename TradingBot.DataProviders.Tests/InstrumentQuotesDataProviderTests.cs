@@ -1,7 +1,6 @@
-﻿using Bybit.Net.Clients;
-using Skender.Stock.Indicators;
+﻿using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
-using TradingBot.CryptoExchanges.ByBit;
+using TradingBot.Quik;
 using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders.Tests
@@ -11,9 +10,9 @@ namespace TradingBot.DataProviders.Tests
         private readonly ITradeAdapter _adapter;
         private readonly IInstrumentsDataProvider _instrumentsDataProvider;
 
-        public InstrumentQuotesDataProviderTests(BybitClient httpClient, ByBitConverter converter)
+        public InstrumentQuotesDataProviderTests(QuikSharp.Quik quik, QuikConverter converter)
         {
-            _adapter = new ByBitTradeAdapter(httpClient, converter);
+            _adapter = new QuikTradeAdapter(quik, converter);
             _instrumentsDataProvider = new InstrumentsDataProvider(_adapter);
         }
 

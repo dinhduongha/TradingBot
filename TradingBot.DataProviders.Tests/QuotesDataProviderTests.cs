@@ -1,7 +1,6 @@
-﻿using Bybit.Net.Clients;
-using Skender.Stock.Indicators;
+﻿using Skender.Stock.Indicators;
 using TradingBot.Core.Domain;
-using TradingBot.CryptoExchanges.ByBit;
+using TradingBot.Quik;
 using TradingBot.TradeAdapters;
 
 namespace TradingBot.DataProviders.Tests
@@ -10,9 +9,9 @@ namespace TradingBot.DataProviders.Tests
     {
         private readonly ITradeAdapter _adapter;
 
-        public QuotesDataProviderTests(BybitClient httpClient, ByBitConverter converter)
+        public QuotesDataProviderTests(QuikSharp.Quik quik, QuikConverter converter)
         {
-            _adapter = new ByBitTradeAdapter(httpClient, converter);
+            _adapter = new QuikTradeAdapter(quik, converter);
         }
 
         [Fact]
@@ -20,7 +19,7 @@ namespace TradingBot.DataProviders.Tests
         {
             var result = new List<IQuote>();
 
-            var symbol = new Symbol("ETH", InstrumentType.Spot, new Currency("USDT"));
+            var symbol = new Symbol("GAZP", InstrumentType.Stock, new Currency("SUR"));
             var provider = new QuotesDataProvider(DateTime.UtcNow.AddDays(-3), DateTime.UtcNow,
                 Interval.FiveMinutes, _adapter);
 

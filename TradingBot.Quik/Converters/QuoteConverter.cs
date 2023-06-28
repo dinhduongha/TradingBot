@@ -5,13 +5,13 @@ using TradingBot.Core.Domain;
 
 namespace TradingBot.Quik.Converters
 {
-    public class QuikQuoteConverter : IQuoteConverter<Candle>
+    public class QuoteConverter : IQuoteConverter<Candle>
     {
-        private readonly QuikDateTimeConverter _dateTimeConverter;
+        private readonly DateTimeConverter _dateTimeConverter;
 
-        public QuikQuoteConverter()
+        public QuoteConverter()
         {
-            _dateTimeConverter = new QuikDateTimeConverter();
+            _dateTimeConverter = new DateTimeConverter();
         }
 
         public IQuote Convert(Candle input)

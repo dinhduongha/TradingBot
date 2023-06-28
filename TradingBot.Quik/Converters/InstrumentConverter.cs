@@ -4,7 +4,7 @@ using TradingBot.Core.Domain;
 
 namespace TradingBot.Quik.Converters
 {
-    public class QuikInstrumentConverter : BaseInstrumentConverter<SecurityInfo>
+    public class InstrumentConverter : BaseInstrumentConverter<SecurityInfo>
     {
         public override string GetFullName(SecurityInfo instrument)
         {
