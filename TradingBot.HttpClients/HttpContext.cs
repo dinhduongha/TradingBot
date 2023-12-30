@@ -1,18 +1,18 @@
 ﻿using Binance.Net.Clients;
 using Bybit.Net.Clients;
-using Okex.Net;
+using OKX.Api;
 
 namespace TradingBot.HttpClients
 {
     public class HttpContext
     {
-        public OkexClient Okex { get; }
+        public OKXRestApiClient Okex { get; }
 
         public BybitClient ByBit { get; }
 
         public BinanceClient Binance { get; }
 
-        public HttpContext(OkexClient okex, BybitClient byBit, BinanceClient binance)
+        public HttpContext(OKXRestApiClient okex, BybitClient byBit, BinanceClient binance)
         {
             Okex = okex;
             ByBit = byBit;

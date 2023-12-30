@@ -1,13 +1,14 @@
-﻿using Okex.Net;
-using Okex.Net.Enums;
+﻿using OKX.Api;
+using OKX.Api.Clients.RestApi;
+using OKX.Api.Enums;
 
 namespace TradingBot.HttpClients.Tests.Okx
 {
     public class OkexClientTests
     {
-        private readonly OkexClient _client;
+        private readonly OKXRestApiAlgoTradingClient _client;
 
-        public OkexClientTests(OkexClient client)
+        public OkexClientTests(OKXRestApiAlgoTradingClient client)
         {
             _client = client;
         }
@@ -15,7 +16,7 @@ namespace TradingBot.HttpClients.Tests.Okx
         [Fact]
         public async Task GetTickersAsync_WithParam_ReturnNotNullAndNotEmptyResult()
         {
-            var response = await _client.GetTickersAsync(OkexInstrumentType.Spot);
+            var response = await _client.GetTickersAsync(OkxInstrumentType.Spot);
 
             Assert.NotNull(response);
 

@@ -1,7 +1,7 @@
 ﻿using Bybit.Net.Clients;
 using Bybit.Net.Enums;
-using Okex.Net;
-
+//using Okex.Net;
+using OKX.Api;
 namespace TradingBot.HttpClients.Tests.ByBit.V5Api
 {
     public class ExchangeDataApiTests

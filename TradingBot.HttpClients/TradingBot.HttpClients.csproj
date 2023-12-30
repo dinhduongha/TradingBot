@@ -14,7 +14,7 @@
     <PackageReference Include="Binance.Net" Version="8.5.1" />
     <PackageReference Include="Bybit.Net" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="OKEx.Net" Version="5.3.3" />
+    <PackageReference Include="OKX.Api" Version="1.5.5" />
   </ItemGroup>
 
 </Project>
