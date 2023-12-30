@@ -7,12 +7,12 @@ namespace TradingBot.HttpClients
     public class HttpContext
     {
         public OKXRestApiClient Okex { get; }
+        
+        public BybitRestClient ByBit { get; }
 
-        public BybitClient ByBit { get; }
+        public BinanceRestClient Binance { get; }
 
-        public BinanceClient Binance { get; }
-
-        public HttpContext(OKXRestApiClient okex, BybitClient byBit, BinanceClient binance)
+        public HttpContext(OKXRestApiClient okex, BybitRestClient byBit, BinanceRestClient binance)
         {
             Okex = okex;
             ByBit = byBit;

@@ -64,7 +64,7 @@ namespace TradingBot.HttpClients.Tests.Okx
         [Fact]
         public async Task GetCandlesticksHistoryAsync_WithParams_ReturnNotNullAndNotEmptyResult()
         {
-            var response = await _client.GetCandlesticksHistoryAsync("BTC-USDT", OkexPeriod.OneMinute);
+            var response = await _client.GetCandlesticksHistoryAsync("BTC-USDT", OkxPeriod.OneMinute);
 
             Assert.NotNull(response);
 
@@ -86,7 +86,7 @@ namespace TradingBot.HttpClients.Tests.Okx
         [Fact]
         public async Task GetBlockTickersAsync_WithParam_ReturnNotNullAndNotEmptyResult()
         {
-            var response = await _client.GetBlockTickersAsync(OkexInstrumentType.Spot);
+            var response = await _client.GetBlockTickersAsync(OkxInstrumentType.Spot);
 
             Assert.NotNull(response);
 
@@ -97,7 +97,7 @@ namespace TradingBot.HttpClients.Tests.Okx
         [Fact]
         public async Task GetInstrumentsAsync_WithParam_ReturnNotNullAndNotEmptyResult()
         {
-            var response = await _client.GetInstrumentsAsync(OkexInstrumentType.Spot);
+            var response = await _client.GetInstrumentsAsync(OkxInstrumentType.Spot);
 
             Assert.NotNull(response);
 
@@ -116,7 +116,7 @@ namespace TradingBot.HttpClients.Tests.Okx
         [Fact]
         public async Task GetRubikTakerVolumeAsync_WithParam_ReturnNotNullAndNotEmptyResult()
         {
-            var response = await _client.GetRubikTakerVolumeAsync("ETH", OkexInstrumentType.Spot);
+            var response = await _client.GetRubikTakerVolumeAsync("ETH", OkxInstrumentType.Spot);
 
             Assert.NotNull(response);
 
@@ -138,7 +138,7 @@ namespace TradingBot.HttpClients.Tests.Okx
         [Fact]
         public async Task GetRubikPutCallRatioAsync_WithParam_ReturnNotNullAndNotEmptyResult()
         {
-            var response = await _client.GetRubikPutCallRatioAsync("BTC", OkexPeriod.OneDay);
+            var response = await _client.GetRubikPutCallRatioAsync("BTC", OkxPeriod.OneDay);
 
             Assert.NotNull(response);
 
@@ -149,7 +149,7 @@ namespace TradingBot.HttpClients.Tests.Okx
         [Fact]
         public async Task GetRubikTakerFlowAsync_WithParam_ReturnNotNullResult()
         {
-            var response = await _client.GetRubikTakerFlowAsync("BTC", OkexPeriod.OneDay);
+            var response = await _client.GetRubikTakerFlowAsync("BTC", OkxPeriod.OneDay);
 
             Assert.NotNull(response);
 
